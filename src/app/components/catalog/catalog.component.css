@@ -72,3 +72,15 @@ mat-card img {
     display: none;
   }
 }
+
+mat-ink-bar {
+  background-color: rgb(237, 70, 41)!important;
+}
+
+.mat-card-title {
+  font-size: 18px;
+}
+
+mat-card-content {
+  min-height: 8vh;
+}

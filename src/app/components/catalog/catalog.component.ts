@@ -13,10 +13,12 @@ export class CatalogComponent implements OnInit {
 
   content: string = 'Hello World!'
   public products: Product[]
+  public colsCounter: number
   
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
+    this.colsCounter = 4;
     this.getProductsByCategory('raki')
   }
 
@@ -45,6 +47,18 @@ export class CatalogComponent implements OnInit {
       category = 'riba'
     }
     this.getProductsByCategory(category)
+  }
+
+  onResize(event) {
+    if (event.target.innerWidth < 640) {
+      this.switchCatalogItemsCount(3);
+    } else if (event.target.innerWidth > 640) {
+      this.switchCatalogItemsCount(4);
+    }
+  }
+
+  switchCatalogItemsCount(count) {
+    this.colsCounter = count;
   }
 
 }

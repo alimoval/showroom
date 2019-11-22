@@ -1,5 +1,5 @@
-<div class="container">
+<div class="container" (window:resize)="onResize($event)">
     <app-header></app-header>
     <router-outlet></router-outlet>
-    <app-footer></app-footer>
+    <app-footer #footer [style]="position"></app-footer>
 </div>
