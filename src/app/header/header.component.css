@@ -1,0 +1,7 @@
+.header-container {
+    min-height: 10vh;
+    background: rgb(239, 100, 39);
+    text-align: center;
+    padding-top: 30px;
+    color: white
+}

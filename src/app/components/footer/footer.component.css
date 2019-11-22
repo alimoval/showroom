@@ -1,0 +1,11 @@
+div {
+    background: #ccc;
+    min-height: 10vh;
+    padding-top: 6vh;
+}
+
+p {
+    max-width: 960px;
+    margin: 0 auto;
+    color: white;
+}

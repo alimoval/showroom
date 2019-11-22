@@ -1,0 +1,56 @@
+.mat-tab-label {
+  background: #eee;
+  min-height: 8vh!important;
+}
+
+.mat-tab-label,
+.mat-tab-link {
+  color: black !important;
+}
+
+/* .mat-tab-label:nth-last-child(1) {
+  border-right: 2px solid rgb(153, 26, 26);
+} */
+.mat-tab-label:hover, .mat-tab-label-active {
+    background: white;
+  }
+
+.mat-tab-label-container {
+  background: #eee;
+}
+
+.mat-tab-labels {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+mat-tab-body {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.mat-list-base .mat-list-item {
+  color: black;
+}
+
+.mat-list-base .mat-subheader {
+  color: black;
+  justify-content: center;
+}
+
+mat-list-item {
+    float: right;
+}
+mat-list-item {
+  border: 1px solid black;
+}
+
+.example-card {
+  margin: 1px;
+  max-width: 200px;
+}
+
+mat-card img {
+  max-width: 237px;
+}

@@ -4,12 +4,14 @@ const express = require('express')
 const ejs = require('ejs');
 const path = require('path');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const apiHandler = require('./routes/apiHandler');
 
 const PORT = process.env.PORT || 3000;
 
 const app = express();
+app.use(cors());
 
 // Set Static Folder
 app.use(express.static(path.join(__dirname, 'dist')));
@@ -28,7 +30,7 @@ app.use('/api', apiHandler);
 
 // Use redirect for all client requests
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist/index.html'));
+    res.sendFile(path.join(__dirname, 'dist/showroom/index.html'));
 });
 
 app.listen(PORT, function() {
