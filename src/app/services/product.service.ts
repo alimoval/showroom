@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 
 import { Product } from '../models/Product';
 
-import { config } from '../../../config'
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class ProductService {
   constructor(
     private http: HttpClient,
     ) { 
-    this.base = config.host + config.port
+    this.base = environment.serverConfig.host + environment.serverConfig.port
   }
 
   getProducts(): Observable<Product[]> {

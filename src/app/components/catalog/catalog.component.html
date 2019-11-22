@@ -2,6 +2,10 @@
     Loading tabs...
 </ng-container> -->
 
+<!-- <a [routerLink]="['/order-form/', product._id]" class="ui medium image">
+  <img [src]="product.imgSrc">
+</a> -->
+
 <mat-tab-group md-no-pagination mat-stretch-tabs animationDuration="10ms" (selectedTabChange)="tabChangeHandler($event)" (window:resize)="onResize($event)">
   <mat-tab label="РАКИ">
       <ng-template mat-tab-label>
