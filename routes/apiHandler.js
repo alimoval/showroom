@@ -25,4 +25,15 @@ router.get('/products/:category', function (req, res, next) {
     });
 });
 
+router.get('/products/:id', function (req, res, next) {
+    const query = req.params._id + ''
+    db.products.find({_id:{'$regex' : query, '$options' : 'i'}}, function (err, product) {
+        if (err) {
+            res.send(err);
+        }
+        console.log('[product]:', product)
+        res.json(product);
+    });
+});
+
 module.exports = router;

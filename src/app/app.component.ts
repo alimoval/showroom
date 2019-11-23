@@ -1,22 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  position = {position: 'absolute',
-     bottom: '0', width: '100%'}
-  
+  ngOnInit() {
+  }
+
   onResize(event) {
-    if (event.target.innerHeight > 963) {
-      this.footerToBottom()
-    }
+    this.footerToBottom()
   }
 
   footerToBottom() {
-    this.position.bottom = '0';
+    
   }
 }

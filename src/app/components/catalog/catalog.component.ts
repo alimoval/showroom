@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ProductService } from '../../services/product.service';
-import { Product } from '../../models/Product';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+
+import { Product } from '../../models/Product';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-catalog',
@@ -14,11 +15,17 @@ export class CatalogComponent implements OnInit {
   content: string = 'Hello World!'
   public products: Product[]
   public colsCounter: number
+  public rowsCounter: number
   
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
     this.colsCounter = 4;
+    this.rowsCounter = 22
+
+    if (window.innerWidth < 420) {
+      this.switchCatalogItemsCount(2)
+    }
     this.getProductsByCategory('raki')
   }
 
@@ -50,8 +57,10 @@ export class CatalogComponent implements OnInit {
   }
 
   onResize(event) {
-    if (event.target.innerWidth < 640) {
+    if (event.target.innerWidth > 420 && event.target.innerWidth < 640) {
       this.switchCatalogItemsCount(3);
+    } else if (event.target.innerWidth < 420) {
+      this.switchCatalogItemsCount(2);
     } else if (event.target.innerWidth > 640) {
       this.switchCatalogItemsCount(4);
     }
@@ -59,6 +68,13 @@ export class CatalogComponent implements OnInit {
 
   switchCatalogItemsCount(count) {
     this.colsCounter = count;
+    if (count == 2) {
+      this.rowsCounter = 16
+    } else if (count == 3) {
+      this.rowsCounter = 13
+    } else {
+      this.rowsCounter = 20
+    }
   }
 
 }

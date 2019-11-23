@@ -16,9 +16,10 @@ import { MatCardModule } from '@angular/material/card';
 import { CatalogComponent } from './components/catalog/catalog.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { HeaderComponent } from './components/header/header.component';
+import { ProductDetailsPageComponent } from './components/product-details-page/product-details-page.component';
 
 import { ProductService } from './services/product.service';
-import { HeaderComponent } from './header/header.component'
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { HeaderComponent } from './header/header.component'
     CatalogComponent,
     FooterComponent,
     HomePageComponent,
-    HeaderComponent
+    HeaderComponent,
+    ProductDetailsPageComponent
   ],
   imports: [
     BrowserModule,

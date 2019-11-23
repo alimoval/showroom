@@ -1,0 +1,23 @@
+.header-container {
+    min-height: 13vh;
+    background: rgb(237, 70, 41);
+    text-align: center;
+    color: white;
+    padding-top: 1vh;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+}
+
+@media screen and (max-width: 420px) {
+    .header-container {
+        min-height: 9vh;
+        background: rgb(237, 70, 41);
+        text-align: center;
+        color: white;
+        padding-top: 1vh;
+    }
+  }

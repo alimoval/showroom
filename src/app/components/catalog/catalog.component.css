@@ -43,9 +43,7 @@ mat-tab-body {
 mat-list-item {
   float: right;
 }
-mat-list-item {
-  border: 1px solid black;
-}
+
 
 mat-card {
   margin: 1px;
@@ -58,13 +56,13 @@ mat-card img {
   margin: 10px;
 }
 
+mat-card-image {
+  padding-bottom: 0;
+}
+
 .mat-tab-header-pagination {
   position: absolute;
   top: 0;
-}
-
-.mat-tab-header-pagination-chevron {
-  color: black;
 }
 
 @media screen and (max-width: 420px) {
@@ -82,5 +80,13 @@ mat-ink-bar {
 }
 
 mat-card-content {
-  min-height: 8vh;
+  min-height: 10vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+mat-tab-body-wrapper {
+  padding-top: 140px;
 }
