@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core'
+import { ActivatedRoute, Params, Router } from '@angular/router'
 
-import { switchMap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators'
 
-import { ProductService } from '../../services/product.service';
-import { Product } from 'src/app/models/Product';
+import { ProductService } from '../../services/product.service'
+import { Product } from 'src/app/models/Product'
 
 @Component({
   selector: 'app-product-details-page',
@@ -14,6 +14,8 @@ import { Product } from 'src/app/models/Product';
 export class ProductDetailsPageComponent implements OnInit {
 
   public product: Product
+  colsCounter: number
+  rowsCounter: number
 
   constructor(
     private route: ActivatedRoute,
@@ -21,7 +23,12 @@ export class ProductDetailsPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getProductById();
+    this.getProductById()
+    if (window.innerWidth < 420) {
+      this.switchCatalogItemsCount(1)
+    } else {
+      this.switchCatalogItemsCount(2)
+    }
   }
 
   getProductById() {
@@ -30,6 +37,25 @@ export class ProductDetailsPageComponent implements OnInit {
       .subscribe(product => {
         console.log(product)
         this.product = product
-      });
+      })
+  }
+
+  onResize(event) {
+    if (event.target.innerWidth > 420 && event.target.innerWidth < 640) {
+      this.switchCatalogItemsCount(2)
+    } else if (event.target.innerWidth < 420) {
+      this.switchCatalogItemsCount(1)
+    } else if (event.target.innerWidth > 640) {
+      this.switchCatalogItemsCount(2)
+    }
+  }
+
+  switchCatalogItemsCount(count) {
+    this.colsCounter = count
+    if (count == 2) {
+      this.rowsCounter = 17
+    } else {
+      this.rowsCounter = 12
+    }
   }
 }

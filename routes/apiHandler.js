@@ -20,14 +20,13 @@ router.get('/products/:category', function (req, res, next) {
         if (err) {
             res.send(err);
         }
-        console.log('[products]:', products)
+        console.log('[products dsfdsfsdf]:', products)
         res.json(products);
     });
 });
 
-router.get('/products/:id', function (req, res, next) {
-    const query = req.params._id + ''
-    db.products.find({_id:{'$regex' : query, '$options' : 'i'}}, function (err, product) {
+router.get('/product/:id', function (req, res, next) {
+    db.products.findOne({ _id: mongojs.ObjectId(req.params.id) }, function (err, product) {
         if (err) {
             res.send(err);
         }

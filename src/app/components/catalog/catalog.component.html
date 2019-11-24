@@ -12,7 +12,7 @@
     </ng-template>
     <mat-grid-list *ngIf="products" [cols]="colsCounter" rowHeight="20px">
       <mat-grid-tile *ngFor="let product of products" [colspan]="1" [rowspan]="rowsCounter">
-        <a [routerLink]="['/products/', product._id]">
+        <a [routerLink]="['/product/', product._id]">
           <mat-card class="example-card">
             <img mat-card-image [src]="product.img" [alt]="product.name">
             <mat-card-content>
@@ -32,7 +32,7 @@
     </ng-template>
     <mat-grid-list *ngIf="products" [cols]="colsCounter" rowHeight="20px">
       <mat-grid-tile *ngFor="let product of products" [colspan]="1" [rowspan]="rowsCounter">
-        <a [routerLink]="['/products/', product._id]">
+        <a [routerLink]="['/product/', product._id]">
           <mat-card class="example-card">
             <img mat-card-image [src]="product.img" [alt]="product.name">
             <mat-card-content>
@@ -52,7 +52,7 @@
     </ng-template>
     <mat-grid-list #list *ngIf="products" [cols]="colsCounter" rowHeight="20px">
       <mat-grid-tile *ngFor="let product of products" [colspan]="1" [rowspan]="rowsCounter">
-        <a [routerLink]="['/products/', product._id]">
+        <a [routerLink]="['/product/', product._id]">
           <mat-card class="example-card">
             <img mat-card-image [src]="product.img" [alt]="product.name">
             <mat-card-content>

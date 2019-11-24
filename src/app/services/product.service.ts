@@ -15,6 +15,7 @@ export class ProductService {
 
   public base: string;
   private productsUrl = '/api/products'
+  private productUrl = '/api/product'
 
   constructor(
     private http: HttpClient,
@@ -33,7 +34,7 @@ export class ProductService {
   }
 
   getProductById(id): Observable<Product> {
-    return this.http.get(this.base + this.productsUrl + '/' + id)
+    return this.http.get(this.base + this.productUrl + '/' + id)
       .pipe(map((response: Product) => response))
   }
 }

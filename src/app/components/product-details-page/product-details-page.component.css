@@ -1,0 +1,10 @@
+button:focus {outline:0;}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+img {
+    max-width: 700px;
+}
