@@ -1,9 +1,10 @@
 .header-container {
-    min-height: 13vh;
-    background: rgb(237, 70, 41);
+    min-height: 4vh;
+    background: #ec4435;
     text-align: center;
     color: white;
-    padding-top: 1vh;
+    padding-top: 2vh;
+    font-size: 20px;
 }
 
 a {

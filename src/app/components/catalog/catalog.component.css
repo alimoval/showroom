@@ -1,6 +1,14 @@
+mat-tab-group {
+  position: static;
+}
+
+mat-grid-list {
+  margin-bottom: 6vh;
+}
+
 .mat-tab-label {
-  background: #eee;
-  min-height: 8vh !important;
+  background: #ffffff;
+  min-height: 6vh !important;
 }
 
 .mat-tab-label,
@@ -17,7 +25,11 @@
 }
 
 .mat-tab-label-container {
-  background: #eee;
+  background: #fff;
+}
+
+mat-tab-header {
+  box-shadow: 0 4px 16px 0 rgba(33,33,33,0.24)!important;
 }
 
 .mat-tab-labels {
@@ -25,10 +37,20 @@
   margin: 0 auto;
 }
 
-mat-tab-body {
+.listsWrapper {
   max-width: 960px;
+  width: 90%;
   margin: 0 auto;
+}
+
+.listsWrapper h2 {
   text-align: center;
+  background: #e6e6e8;
+  min-height: 8vh;
+  padding-top: 3vh;
+  font-size: 30px;
+  border-top: 6px solid #ededf1;
+  border-bottom: 6px solid #ededf1;
 }
 
 .mat-list-base .mat-list-item {
@@ -43,7 +65,6 @@ mat-tab-body {
 mat-list-item {
   float: right;
 }
-
 
 mat-card {
   margin: 1px;
@@ -81,6 +102,7 @@ mat-ink-bar {
 
 mat-card-content {
   min-height: 10vh;
+  padding-left: 2vh;
 }
 
 a {

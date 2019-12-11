@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatTabChangeEvent } from '@angular/material/tabs';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core'
+import { MatTabChangeEvent } from '@angular/material/tabs'
 
-import { Product } from '../../models/Product';
-import { ProductService } from '../../services/product.service';
+import { Product } from '../../models/Product'
+import { ProductService } from '../../services/product.service'
 
 @Component({
   selector: 'app-catalog',
@@ -12,62 +12,93 @@ import { ProductService } from '../../services/product.service';
 })
 export class CatalogComponent implements OnInit {
 
-  content: string = 'Hello World!'
   public products: Product[]
+  public riba: Product[] = []
+  public meal: Product[] = []
+  public krevetki: Product[]  = []
+  public raki: Product[]  = []
+  public sneaks: Product[]  = []
+  public beer: Product[]  = []
+
   public colsCounter: number
   public rowsCounter: number
   
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    this.colsCounter = 4;
-    this.rowsCounter = 22
+    this.colsCounter = 4
+    this.rowsCounter = 17
 
     if (window.innerWidth < 420) {
       this.switchCatalogItemsCount(2)
     }
-    this.getProductsByCategory('raki')
+    this.getProducts()
   }
 
   getProducts() {
     this.productService.getProducts()
       .subscribe(products => {
-        this.products = products;
+        for (let i = 0; i < products.length; i++) {
+          this.handleProductItem(products[i])
+        }
+        this.products = products
       })
+  }
+
+  handleProductItem(item) {
+    switch (item.category) {
+      case 'riba':
+        this.riba.push(item)
+        break
+      case 'meal':
+        this.meal.push(item)
+        break
+      case 'krevetki':
+          this.krevetki.push(item)
+          break
+      case 'raki':
+          this.raki.push(item)
+          break
+      case 'sneaks':
+        this.sneaks.push(item)
+        break
+      case 'beer':
+        this.beer.push(item)
+        break
+      default:
+        console.log('default');
+    }
   }
 
   getProductsByCategory(category) {
     this.productService.getProductsByCategory(category)
       .subscribe(products => {
-        this.products = products;
+        this.products = products
       })
   }
 
   tabChangeHandler(event: MatTabChangeEvent) {
+    console.log('event', event.tab.textLabel)
     let textLabel = event.tab.textLabel
-    let category: string
-    if (textLabel === 'МИДИИ') {
-      category = 'midii'
-    } else if (textLabel === 'РАКИ') {
-      category = 'raki'
-    } else if (textLabel === 'РЫБА') {
-      category = 'riba'
-    }
-    this.getProductsByCategory(category)
+    this.scrollToCategory(textLabel)
+  }
+
+  scrollToCategory(textLabel) {
+    document.getElementById(textLabel).scrollIntoView({ behavior: "smooth" });
   }
 
   onResize(event) {
     if (event.target.innerWidth > 420 && event.target.innerWidth < 640) {
-      this.switchCatalogItemsCount(3);
+      this.switchCatalogItemsCount(3)
     } else if (event.target.innerWidth < 420) {
-      this.switchCatalogItemsCount(2);
+      this.switchCatalogItemsCount(2)
     } else if (event.target.innerWidth > 640) {
-      this.switchCatalogItemsCount(4);
+      this.switchCatalogItemsCount(4)
     }
   }
 
   switchCatalogItemsCount(count) {
-    this.colsCounter = count;
+    this.colsCounter = count
     if (count == 2) {
       this.rowsCounter = 16
     } else if (count == 3) {
