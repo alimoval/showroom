@@ -12,6 +12,11 @@ a {
     display: inline-block;
 }
 
+img {
+    max-width: 180px;
+    padding: 20px 0;
+}
+
 @media screen and (max-width: 420px) {
     .header-container {
         min-height: 9vh;
@@ -19,5 +24,9 @@ a {
         text-align: center;
         color: white;
         padding-top: 1vh;
+    }
+    img {
+        max-width: 130px;
+        padding: 5px 0;
     }
   }
