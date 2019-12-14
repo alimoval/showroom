@@ -4,9 +4,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, from } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Product } from '../models/Product';
+import { Product } from '../../models/Product';
 
-import { environment } from '../../environments/environment'
+import { environment } from '../../../environments/environment'
 
 @Injectable({
   providedIn: 'root'

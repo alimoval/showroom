@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core'
-import { MatTabChangeEvent } from '@angular/material/tabs'
 
 import { Product } from '../../models/Product'
-import { ProductService } from '../../services/product.service'
+import { ProductService } from '../../services/product/product.service'
+import { ScrollerService } from 'src/app/services/scroller/scroller.service'
 
 @Component({
   selector: 'app-catalog',
@@ -15,15 +15,18 @@ export class CatalogComponent implements OnInit {
   public products: Product[]
   public riba: Product[] = []
   public meal: Product[] = []
-  public krevetki: Product[]  = []
-  public raki: Product[]  = []
-  public sneaks: Product[]  = []
-  public beer: Product[]  = []
+  public krevetki: Product[] = []
+  public raki: Product[] = []
+  public sneaks: Product[] = []
+  public beer: Product[] = []
 
   public colsCounter: number
   public rowsCounter: number
-  
-  constructor(private productService: ProductService) { }
+
+  constructor(
+    private productService: ProductService,
+    private scroller: ScrollerService
+  ) { }
 
   ngOnInit() {
     this.colsCounter = 4
@@ -33,6 +36,9 @@ export class CatalogComponent implements OnInit {
       this.switchCatalogItemsCount(2)
     }
     this.getProducts()
+    this.scroller.getData().subscribe(data => {
+      this.scrollToCategory(data)
+    })
   }
 
   getProducts() {
@@ -54,11 +60,11 @@ export class CatalogComponent implements OnInit {
         this.meal.push(item)
         break
       case 'krevetki':
-          this.krevetki.push(item)
-          break
+        this.krevetki.push(item)
+        break
       case 'raki':
-          this.raki.push(item)
-          break
+        this.raki.push(item)
+        break
       case 'sneaks':
         this.sneaks.push(item)
         break
@@ -77,14 +83,11 @@ export class CatalogComponent implements OnInit {
       })
   }
 
-  tabChangeHandler(event: MatTabChangeEvent) {
-    console.log('event', event.tab.textLabel)
-    let textLabel = event.tab.textLabel
-    this.scrollToCategory(textLabel)
-  }
-
-  scrollToCategory(textLabel) {
-    document.getElementById(textLabel).scrollIntoView({ behavior: "smooth" });
+  scrollToCategory(data) {
+    const elem = document.getElementById(data);
+    const yOffset = -120;
+    const y = elem.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
   }
 
   onResize(event) {

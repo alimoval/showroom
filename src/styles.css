@@ -1,16 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
-html,
-body {
-  height: 100%;
-  min-height: 640px;
-}
-body {
+html, body, .app-root {
   margin: 0;
+  margin-top: 10vh;
   padding: 0;
-  font-family: "Trebuchet MS", Tahoma, Arial, Helvetica, Geneva, sans-serif;
-}
-
-app-root {
-  position: relative;
+  height: 100%;
+  width: 100%;
+  font-family: Montserrat, Roboto, sans-serif;
 }

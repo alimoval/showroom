@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ScrollerService } from '../../services/scroller/scroller.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private scroller: ScrollerService,
+  ) { }
 
   ngOnInit() {
   }
 
+  updateData(value: string) {
+    this.scroller.updateData(value);
+  }
 }

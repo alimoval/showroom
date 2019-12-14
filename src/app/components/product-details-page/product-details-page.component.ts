@@ -3,7 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router'
 
 import { switchMap } from 'rxjs/operators'
 
-import { ProductService } from '../../services/product.service'
+import { ProductService } from '../../services/product/product.service'
 import { Product } from 'src/app/models/Product'
 
 @Component({

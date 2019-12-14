@@ -15,18 +15,17 @@ import { MatCardModule } from '@angular/material/card';
 
 import { CatalogComponent } from './components/catalog/catalog.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { HomePageComponent } from './components/home-page/home-page.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ProductDetailsPageComponent } from './components/product-details-page/product-details-page.component';
 
-import { ProductService } from './services/product.service';
+import { ProductService } from './services/product/product.service';
+import { ScrollerService } from './services/scroller/scroller.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     CatalogComponent,
     FooterComponent,
-    HomePageComponent,
     HeaderComponent,
     ProductDetailsPageComponent
   ],
@@ -43,7 +42,8 @@ import { ProductService } from './services/product.service';
     MatCardModule
   ],
   providers: [
-    ProductService
+    ProductService,
+    ScrollerService
   ],
   bootstrap: [AppComponent]
 })

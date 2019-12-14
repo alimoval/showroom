@@ -1,33 +1,71 @@
+.header-wrapper {
+  height: 12vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left:0;
+  z-index: 2147483647;
+}
+
 .header-container {
-    min-height: 4vh;
+    height: 6vh;
     background: #ec4435;
     text-align: center;
     color: white;
     padding-top: 2vh;
     font-size: 20px;
+    width:100%;
 }
 
-a {
+.header-container a {
     text-decoration: none;
     color: white;
     display: inline-block;
 }
 
-img {
-    max-width: 180px;
-    padding: 20px 0;
-}
+.header-container a > mat-icon{
+  vertical-align:middle;
+} 
 
 @media screen and (max-width: 420px) {
-    .header-container {
-        min-height: 9vh;
-        background: rgb(237, 70, 41);
-        text-align: center;
-        color: white;
-        padding-top: 1vh;
-    }
-    img {
-        max-width: 130px;
-        padding: 5px 0;
-    }
+  .header-container {
+      height: 5vh;
+      padding-top: 1vh;
   }
+}
+
+.nav-container{
+  width: 100%;
+  background: #fff;
+  height: 7vh;
+  padding: 4px;
+  box-shadow: 0 4px 16px 0 rgba(33,33,33,0.24)!important;
+}
+
+.navMenu {
+  max-width: 960px;
+  margin: 0 auto;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.navLogo > img {
+  max-height: 6vh;
+}
+
+.navList {
+  display: flex;
+  list-style-type: none;
+}
+
+.navList a {
+  color: rgb(54, 54, 54);
+  text-decoration: none;
+  padding: 20px;
+}
+
+.navList a:target {
+  border-bottom: 1px solid red;
+}

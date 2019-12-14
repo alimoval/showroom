@@ -1,5 +1,36 @@
-<div class="header-container">
-  <a href="tel:+380675101110">
-    <b>(067) 510 11 10</b>
-  </a>
+<div class="header-wrapper">
+  <div class="header-container">
+    <a href="tel:+380675101110">
+      <mat-icon>call</mat-icon>
+      <b> (067) 510 11 10</b>
+    </a>
+  </div>
+  <div class="nav-container">
+    <nav class="navMenu">
+      <a [routerLink]="'/'" class="navLogo">
+        <img src="https://i.ibb.co/YhfXYrY/image.png" alt="image">
+      </a>
+      <ul class="navList">
+        <li class="navItem">
+          <a href="javascript:;" (click)="updateData('riba')">Рыба</a>
+        </li>
+        <li class="navItem">
+          <a href="javascript:;" (click)="updateData('meal')">Мясо</a>
+        </li>
+        <li class="navItem">
+          <a href="javascript:;" (click)="updateData('krevetki')">Креветки</a>
+        </li>
+        <li class="navItem">
+          <a href="javascript:;" (click)="updateData('raki')">Раки</a>
+        </li>
+        <li class="navItem">
+          <a href="javascript:;" (click)="updateData('sneaks')">Снэки</a>
+        </li>
+        <li class="navItem">
+          <a href="javascript:;" (click)="updateData('beer')">Пиво</a>
+        </li>
+      </ul>
+      <div class="cart"></div>
+    </nav>
+  </div>
 </div>
