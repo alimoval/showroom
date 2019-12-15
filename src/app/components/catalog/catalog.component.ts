@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core'
+import { Router } from '@angular/router'
 
 import { Product } from '../../models/Product'
 import { ProductService } from '../../services/product/product.service'
@@ -24,6 +25,7 @@ export class CatalogComponent implements OnInit {
   public rowsCounter: number
 
   constructor(
+    private router: Router,
     private productService: ProductService,
     private scroller: ScrollerService
   ) { }
@@ -38,7 +40,7 @@ export class CatalogComponent implements OnInit {
     this.getProducts()
     this.scroller.getData().subscribe(data => {
       this.scrollToCategory(data)
-    })
+    });
   }
 
   getProducts() {
@@ -84,10 +86,12 @@ export class CatalogComponent implements OnInit {
   }
 
   scrollToCategory(data) {
-    const elem = document.getElementById(data);
-    const yOffset = -120;
-    const y = elem.getBoundingClientRect().top + window.pageYOffset + yOffset;
-    window.scrollTo({ top: y, behavior: 'smooth' });
+    if (this.router.url === '/') {
+      const elem = document.getElementById(data);
+      const yOffset = -120;
+      const y = elem.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
   }
 
   onResize(event) {

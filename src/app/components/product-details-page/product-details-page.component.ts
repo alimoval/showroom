@@ -3,8 +3,10 @@ import { ActivatedRoute, Params, Router } from '@angular/router'
 
 import { switchMap } from 'rxjs/operators'
 
-import { ProductService } from '../../services/product/product.service'
 import { Product } from 'src/app/models/Product'
+
+import { ProductService } from '../../services/product/product.service'
+import { ScrollerService } from 'src/app/services/scroller/scroller.service'
 
 @Component({
   selector: 'app-product-details-page',
@@ -19,11 +21,20 @@ export class ProductDetailsPageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private router: Router,
+    private productService: ProductService,
+    private scroller: ScrollerService,
   ) { }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.getProductById()
+    this.scroller.getData().subscribe(data => {
+      console.log('data', data)
+      if (this.router.url !== '/') {
+        this.router.navigate(['/']);
+      }
+    })
     if (window.innerWidth < 420) {
       this.switchCatalogItemsCount(1)
     } else {
@@ -35,7 +46,6 @@ export class ProductDetailsPageComponent implements OnInit {
     this.route.params
       .pipe(switchMap((params: Params) => this.productService.getProductById(params['id'])))
       .subscribe(product => {
-        console.log(product)
         this.product = product
       })
   }
