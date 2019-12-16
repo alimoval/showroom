@@ -33,7 +33,9 @@ export class CatalogComponent implements OnInit {
   ngOnInit() {
     this.colsCounter = 4
     this.rowsCounter = 17
-
+    if (window.innerWidth < 690) {
+      this.switchCatalogItemsCount(3)
+    }
     if (window.innerWidth < 420) {
       this.switchCatalogItemsCount(2)
     }
@@ -109,7 +111,7 @@ export class CatalogComponent implements OnInit {
     if (count == 2) {
       this.rowsCounter = 16
     } else if (count == 3) {
-      this.rowsCounter = 13
+      this.rowsCounter = 15
     } else {
       this.rowsCounter = 20
     }

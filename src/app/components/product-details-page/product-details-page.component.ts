@@ -32,13 +32,26 @@ export class ProductDetailsPageComponent implements OnInit {
     this.scroller.getData().subscribe(data => {
       console.log('data', data)
       if (this.router.url !== '/') {
-        this.router.navigate(['/']);
+        this.router.navigate(['/']).then(res => {
+          setTimeout(() => {
+            this.scrollToCategory(data);
+          }, 200);
+        });
       }
     })
     if (window.innerWidth < 420) {
       this.switchCatalogItemsCount(1)
     } else {
       this.switchCatalogItemsCount(2)
+    }
+  }
+
+  scrollToCategory(data) {
+    if (this.router.url === '/') {
+      const elem = document.getElementById(data);
+      const yOffset = -120;
+      const y = elem.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
     }
   }
 
