@@ -1,4 +1,4 @@
-<div class="listsWrapper">
+<div class="listsWrapper" (window:resize)="onResize($event)">
   <h2 id="riba">Рыба</h2>
   <mat-grid-list *ngIf="riba" [cols]="colsCounter" rowHeight="20px">
     <mat-grid-tile *ngFor="let product of riba" [colspan]="1" [rowspan]="rowsCounter">

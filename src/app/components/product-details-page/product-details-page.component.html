@@ -1,17 +1,21 @@
 <div class="container" (window:resize)="onResize($event)">
-    <mat-grid-list *ngIf="product" [cols]="colsCounter" rowHeight="40px">
-        <mat-grid-tile [colspan]="1" [rowspan]="rowsCounter">
-            <img *ngIf="product" [src]="product.img" alt="">
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="1" [rowspan]="3">
-            <div style="color:black; font-size: 46px; font-weight: 600; display: inline-block;">{{product.name}}</div>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="1" [rowspan]="2">
-            <div *ngIf="product" style="color: rgb(237, 70, 41); font-size: 50px;">{{product.price}} грн</div>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="1" [rowspan]="2">
-            <button
-                style="margin-bottom: 10px; color: white; background:rgb(237, 70, 41); width: 96px; height:42px; border-radius: 8px; cursor: pointer;">Купить</button>
-        </mat-grid-tile>
-    </mat-grid-list>
+  <mat-grid-list *ngIf="product" [cols]="colsCounter" rowHeight="40px">
+    <mat-grid-tile [colspan]="1" [rowspan]="rowsCounter">
+      <img *ngIf="product" [src]="product.img" alt="">
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="3">
+      <div style="color:black; font-size: 46px; font-weight: 600; display: inline-block;">{{product.name}}</div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+      <div *ngIf="product" style="color: rgb(237, 70, 41); font-size: 50px;">{{product.price}} грн</div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+      <button (click)="onClickBuyButton()"
+        style="margin-bottom: 10px; color: white; background:rgb(237, 70, 41); width: 96px; height:42px; border-radius: 8px; cursor: pointer;">Купить
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile *ngIf="cart">
+      {{cart.name}}
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>

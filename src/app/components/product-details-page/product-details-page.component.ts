@@ -7,6 +7,7 @@ import { Product } from 'src/app/models/Product'
 
 import { ProductService } from '../../services/product/product.service'
 import { ScrollerService } from 'src/app/services/scroller/scroller.service'
+import { ShopingcartService } from 'src/app/services/shopingcart/shopingcart.service'
 
 @Component({
   selector: 'app-product-details-page',
@@ -16,6 +17,7 @@ import { ScrollerService } from 'src/app/services/scroller/scroller.service'
 export class ProductDetailsPageComponent implements OnInit {
 
   public product: Product
+  public cart: object
   colsCounter: number
   rowsCounter: number
 
@@ -24,21 +26,27 @@ export class ProductDetailsPageComponent implements OnInit {
     private router: Router,
     private productService: ProductService,
     private scroller: ScrollerService,
+    private shopingcart: ShopingcartService,
   ) { }
 
   ngOnInit() {
     window.scrollTo(0, 0);
     this.getProductById()
-    this.scroller.getData().subscribe(data => {
-      console.log('data', data)
-      if (this.router.url !== '/') {
-        this.router.navigate(['/']).then(res => {
-          setTimeout(() => {
-            this.scrollToCategory(data);
-          }, 200);
-        });
-      }
-    })
+    // this.scroller.getData()
+    //   .subscribe(data => {
+    //     if (this.router.url !== '/') {
+    //       this.router.navigate(['/']).then(res => {
+    //         setTimeout(() => {
+    //           this.scrollToCategory(data);
+    //         }, 200);
+    //       });
+    //     }
+    //   })
+    this.shopingcart.getData()
+      .subscribe((data: any) => {
+        console.log('data@@@', data);
+        this.cart = data;
+      })
     if (window.innerWidth < 420) {
       this.switchCatalogItemsCount(1)
     } else {
@@ -80,5 +88,9 @@ export class ProductDetailsPageComponent implements OnInit {
     } else {
       this.rowsCounter = 12
     }
+  }
+
+  onClickBuyButton() {
+    this.shopingcart.saveCart(this.product);
   }
 }

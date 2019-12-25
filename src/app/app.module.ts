@@ -20,6 +20,7 @@ import { ProductDetailsPageComponent } from './components/product-details-page/p
 
 import { ProductService } from './services/product/product.service';
 import { ScrollerService } from './services/scroller/scroller.service';
+import { ShopingcartService } from './services/shopingcart/shopingcart.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { ScrollerService } from './services/scroller/scroller.service';
     CatalogComponent,
     FooterComponent,
     HeaderComponent,
-    ProductDetailsPageComponent
+    ProductDetailsPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,11 +40,12 @@ import { ScrollerService } from './services/scroller/scroller.service';
     MatTabsModule,
     MatListModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
   ],
   providers: [
     ProductService,
-    ScrollerService
+    ScrollerService,
+    ShopingcartService,
   ],
   bootstrap: [AppComponent]
 })
