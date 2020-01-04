@@ -1,23 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Subject, of } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+
+import { CartService, BaseCartItem } from 'ng-shopping-cart';
 
 @Injectable()
-export class ShopingcartService {
-  private dataObs$ = new Subject();
+export class ShoppingcartService {
+  private dataObs$ = new BehaviorSubject(this.getCartItems());
 
-  constructor() {
-    this.dataObs$.next(JSON.parse(localStorage.getItem('cart')));
-   }
-
-  saveCart(cart) {
-    this.updateData(cart)
-  }
-
-  updateData(data: object) {
-    this.dataObs$.next(data);
-  }
+  constructor(
+    private cartService: CartService<BaseCartItem>,
+  ) { }
 
   getData() {
     return this.dataObs$;
+  }
+
+  getCartItems() {
+    return this.cartService.getItems();
   }
 }

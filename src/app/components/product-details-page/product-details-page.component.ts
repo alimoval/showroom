@@ -3,11 +3,13 @@ import { ActivatedRoute, Params, Router } from '@angular/router'
 
 import { switchMap } from 'rxjs/operators'
 
+import { CartService, BaseCartItem } from 'ng-shopping-cart';
+
 import { Product } from 'src/app/models/Product'
 
 import { ProductService } from '../../services/product/product.service'
 import { ScrollerService } from 'src/app/services/scroller/scroller.service'
-import { ShopingcartService } from 'src/app/services/shopingcart/shopingcart.service'
+import { ShoppingcartService } from 'src/app/services/shopingcart/shopingcart.service';
 
 @Component({
   selector: 'app-product-details-page',
@@ -17,7 +19,7 @@ import { ShopingcartService } from 'src/app/services/shopingcart/shopingcart.ser
 export class ProductDetailsPageComponent implements OnInit {
 
   public product: Product
-  public cart: object
+  public cart: any
   colsCounter: number
   rowsCounter: number
 
@@ -26,26 +28,36 @@ export class ProductDetailsPageComponent implements OnInit {
     private router: Router,
     private productService: ProductService,
     private scroller: ScrollerService,
-    private shopingcart: ShopingcartService,
+    private shoppingcart: ShoppingcartService,
+    private cartService: CartService<BaseCartItem>,
   ) { }
 
   ngOnInit() {
     window.scrollTo(0, 0);
     this.getProductById()
-    // this.scroller.getData()
-    //   .subscribe(data => {
-    //     if (this.router.url !== '/') {
-    //       this.router.navigate(['/']).then(res => {
-    //         setTimeout(() => {
-    //           this.scrollToCategory(data);
-    //         }, 200);
-    //       });
-    //     }
-    //   })
-    this.shopingcart.getData()
-      .subscribe((data: any) => {
-        console.log('data@@@', data);
+    .subscribe(product => {
+      this.product = product
+      console.log('this.product', this.product);
+    })
+    this.scroller.getData()
+      .subscribe(data => {
+        if (this.router.url !== '/') {
+          this.router.navigate(['/']).then(res => {
+            setTimeout(() => {
+              this.scrollToCategory(data);
+            }, 200);
+          });
+        }
+      })
+    this.shoppingcart.getData()
+      .subscribe(data => {
         this.cart = data;
+        const detailsCartData = data.filter(item => {
+          console.log('item', item, 'item.id', item.id)
+          console.log('this.product.id', this.product.id)
+          return item.id === this.product.id;
+        })
+        console.log('this.cart', this.cart[0])
       })
     if (window.innerWidth < 420) {
       this.switchCatalogItemsCount(1)
@@ -64,11 +76,8 @@ export class ProductDetailsPageComponent implements OnInit {
   }
 
   getProductById() {
-    this.route.params
+    return this.route.params
       .pipe(switchMap((params: Params) => this.productService.getProductById(params['id'])))
-      .subscribe(product => {
-        this.product = product
-      })
   }
 
   onResize(event) {
@@ -91,6 +100,15 @@ export class ProductDetailsPageComponent implements OnInit {
   }
 
   onClickBuyButton() {
-    this.shopingcart.saveCart(this.product);
+    const items = this.cartService.getItems();
+    for (let i = 0; i < items.length; i++) {
+      if (this.product.name === items[i].name) {
+        this.cartService.removeItem(items[i].id);
+        const item = new BaseCartItem({ id: items[i].id, name: items[i].name, price: items[i].price, quantity: items[i].quantity + 1, });
+        this.cartService.addItem(item);
+      }
+    }
+    // const item = new BaseCartItem({ name: this.product.name, price: this.product.price, quantity: 1 });
+    //     this.cartService.addItem(item);
   }
 }

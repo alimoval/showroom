@@ -13,6 +13,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 
+import { ShoppingCartModule } from 'ng-shopping-cart';
+
 import { CatalogComponent } from './components/catalog/catalog.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -20,7 +22,7 @@ import { ProductDetailsPageComponent } from './components/product-details-page/p
 
 import { ProductService } from './services/product/product.service';
 import { ScrollerService } from './services/scroller/scroller.service';
-import { ShopingcartService } from './services/shopingcart/shopingcart.service';
+import { ShoppingcartService } from './services/shopingcart/shopingcart.service';
 
 @NgModule({
   declarations: [
@@ -41,11 +43,18 @@ import { ShopingcartService } from './services/shopingcart/shopingcart.service';
     MatListModule,
     MatGridListModule,
     MatCardModule,
+    ShoppingCartModule.forRoot({ // <-- Add the cart module to your root module
+      serviceType: 'localStorage',
+      serviceOptions: {
+        storageKey: 'NgShoppingCart',
+        clearOnError: true
+      }
+    }),
   ],
   providers: [
     ProductService,
     ScrollerService,
-    ShopingcartService,
+    ShoppingcartService,
   ],
   bootstrap: [AppComponent]
 })

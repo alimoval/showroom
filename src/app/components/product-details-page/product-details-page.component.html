@@ -13,9 +13,12 @@
       <button (click)="onClickBuyButton()"
         style="margin-bottom: 10px; color: white; background:rgb(237, 70, 41); width: 96px; height:42px; border-radius: 8px; cursor: pointer;">Купить
       </button>
+      <add-to-cart [item]="product">
+        <button type="button" class="my-custom-class">Add item</button>
+      </add-to-cart>
     </mat-grid-tile>
     <mat-grid-tile *ngIf="cart">
-      {{cart.name}}
+      {{cart | json}}
     </mat-grid-tile>
   </mat-grid-list>
 </div>
