@@ -33,11 +33,14 @@ export class CatalogComponent implements OnInit {
   ngOnInit() {
     this.colsCounter = 4
     this.rowsCounter = 17
-    if (window.innerWidth < 690) {
+    if (window.innerWidth < 640) {
+      this.switchCatalogItemsCount(2)
+    }
+    if (window.innerWidth <= 900) {
       this.switchCatalogItemsCount(3)
     }
-    if (window.innerWidth < 420) {
-      this.switchCatalogItemsCount(2)
+    if (window.innerWidth > 900) {
+      this.switchCatalogItemsCount(4)
     }
     this.getProducts()
     this.scroller.getData().subscribe(data => {
@@ -97,11 +100,11 @@ export class CatalogComponent implements OnInit {
   }
 
   onResize(event) {
-    if (event.target.innerWidth > 420 && event.target.innerWidth < 690) {
-      this.switchCatalogItemsCount(3)
-    } else if (event.target.innerWidth < 420) {
+    if (event.target.innerWidth <= 640) {
       this.switchCatalogItemsCount(2)
-    } else if (event.target.innerWidth > 640) {
+    } else if (event.target.innerWidth > 640 && event.target.innerWidth <= 900) {
+      this.switchCatalogItemsCount(3)
+    } else if (event.target.innerWidth > 900) {
       this.switchCatalogItemsCount(4)
     }
   }

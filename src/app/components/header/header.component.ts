@@ -17,10 +17,13 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.shoppingcart.getSumm()
+    this.shoppingcart.getData()
       .subscribe(data => {
-        this.summ = data;
-        console.log('this.summ', this.summ);
+        let summ = 0;
+        for (let i = 0; i < data.length; i++) {
+          summ += data[i].price * data[i].quantity;
+        }
+        this.summ = summ;
       })
   }
 

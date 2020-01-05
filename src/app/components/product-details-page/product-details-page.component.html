@@ -9,16 +9,11 @@
     <mat-grid-tile [colspan]="1" [rowspan]="2">
       <div *ngIf="product" style="color: rgb(237, 70, 41); font-size: 50px;">{{product.price}} грн</div>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="1" [rowspan]="2">
-      <button (click)="onClickBuyButton()"
-        style="margin-bottom: 10px; color: white; background:rgb(237, 70, 41); width: 96px; height:42px; border-radius: 8px; cursor: pointer;">Купить
-      </button>
-      <add-to-cart [item]="product">
-        <button type="button" class="my-custom-class">Add item</button>
-      </add-to-cart>
-    </mat-grid-tile>
-    <mat-grid-tile *ngIf="cart">
-      {{cart | json}}
+    <mat-grid-tile class="cartItem">
+        <button type="button" class="remove-button" (click)="onClickRemoveButton()">-</button>
+        <div *ngIf="cartItem" style="padding: 0 10px">{{cartItem.quantity | json}}</div>
+        <div *ngIf="!cartItem" style="padding: 0 10px">0</div>
+        <button type="button" class="add-button" (click)="onClickAddButton()">+</button>
     </mat-grid-tile>
   </mat-grid-list>
 </div>

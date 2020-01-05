@@ -3,8 +3,6 @@ import { ActivatedRoute, Params, Router } from '@angular/router'
 
 import { switchMap, mergeMap } from 'rxjs/operators'
 
-import { CartService, BaseCartItem } from 'ng-shopping-cart';
-
 import { Product } from 'src/app/models/Product'
 
 import { ProductService } from '../../services/product/product.service'
@@ -20,6 +18,8 @@ export class ProductDetailsPageComponent implements OnInit {
 
   public product: Product
   public cart: any
+  public cartItem: any;
+
   colsCounter: number
   rowsCounter: number
 
@@ -29,7 +29,6 @@ export class ProductDetailsPageComponent implements OnInit {
     private productService: ProductService,
     private scroller: ScrollerService,
     private shoppingcart: ShoppingcartService,
-    private cartService: CartService<BaseCartItem>,
   ) { }
 
   ngOnInit() {
@@ -38,15 +37,13 @@ export class ProductDetailsPageComponent implements OnInit {
       .pipe(
         mergeMap(product => {
           this.product = product;
-          console.log('this.product', this.product);
           return this.shoppingcart.getData()
         }),
         mergeMap(data => {
           this.cart = data;
-          console.log('this.cart', this.cart);
           for(let i = 0; i < this.cart.length; i++){
             if (this.cart[i].name == this.product.name) {
-              this.showItemsQuantity(this.cart[i].quantity);
+              this.showCartItemQuantity(this.cart[i]);
             }
           }
           return this.scroller.getData()
@@ -57,20 +54,19 @@ export class ProductDetailsPageComponent implements OnInit {
           this.router.navigate(['/']).then(res => {
             setTimeout(() => {
               this.scrollToCategory(data);
-            }, 200);
+            }, 300);
           });
         }
       })
-
-    if (window.innerWidth < 420) {
+    if (window.innerWidth <= 470) {
       this.switchCatalogItemsCount(1)
     } else {
       this.switchCatalogItemsCount(2)
     }
   }
 
-  showItemsQuantity(data) {
-    console.log('@@@', data);
+  showCartItemQuantity(cartItem) {
+    this.cartItem = cartItem;
   }
 
   scrollToCategory(data) {
@@ -88,11 +84,11 @@ export class ProductDetailsPageComponent implements OnInit {
   }
 
   onResize(event) {
-    if (event.target.innerWidth > 420 && event.target.innerWidth < 640) {
+    if (event.target.innerWidth > 460 && event.target.innerWidth <= 690) {
       this.switchCatalogItemsCount(2)
-    } else if (event.target.innerWidth < 420) {
+    } else if (event.target.innerWidth <= 460) {
       this.switchCatalogItemsCount(1)
-    } else if (event.target.innerWidth > 640) {
+    } else if (event.target.innerWidth > 690) {
       this.switchCatalogItemsCount(2)
     }
   }
@@ -106,16 +102,17 @@ export class ProductDetailsPageComponent implements OnInit {
     }
   }
 
-  onClickBuyButton() {
-    const items = this.cartService.getItems();
-    for (let i = 0; i < items.length; i++) {
-      if (this.product.name === items[i].name) {
-        this.cartService.removeItem(items[i].id);
-        const item = new BaseCartItem({ id: items[i].id, name: items[i].name, price: items[i].price, quantity: items[i].quantity + 1, });
-        this.cartService.addItem(item);
-      }
+  onClickAddButton() {
+    if (this.cartItem) {
+      this.shoppingcart.addQuantity(this.cartItem)
+    } else {
+      this.shoppingcart.addItem(this.product);
     }
-    // const item = new BaseCartItem({ name: this.product.name, price: this.product.price, quantity: 1 });
-    //     this.cartService.addItem(item);
+  }
+
+  onClickRemoveButton() {
+    if (this.cartItem) {
+      this.shoppingcart.removeQuantity(this.cartItem)
+    }
   }
 }

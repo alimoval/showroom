@@ -15,16 +15,49 @@ export class ShoppingcartService {
     return this.dataObs$;
   }
 
-  getSumm() {
-    let summ = 0;
-    const items = this.getCartItems();
-    for (let i = 0; i < items.length; i++) {
-      summ += items[i].price * items[i].quantity;
-    }
-    return of(summ);
-  }
-
   getCartItems() {
     return this.cartService.getItems();
+  }
+
+  updateCartItems(updatedItem) {
+    let currentCartItems = this.getCartItems();
+    for (let i = 0; i < currentCartItems.length; i++) {
+      if (currentCartItems[i].id === updatedItem.id) {
+        currentCartItems[i] = updatedItem;
+      }
+    }
+    this.cartService.clear();
+    for (let i = 0; i < currentCartItems.length; i++) {
+      this.cartService.addItem(currentCartItems[i])
+    }
+    this.dataObs$.next(this.getCartItems())
+  }
+
+  addQuantity(cartItem) {
+    let updatedItem = new BaseCartItem({...cartItem, quantity: cartItem.quantity + 1})
+    this.updateCartItems(updatedItem);
+  }
+
+  removeQuantity(cartItem) {
+    if (cartItem.quantity > 0) {
+      let updatedItem = {...cartItem, quantity: cartItem.quantity - 1}
+      this.updateCartItems(updatedItem);
+    }
+  }
+
+  async addItem(product) {
+    let currentCartItems = this.getCartItems()
+    currentCartItems.push(new BaseCartItem({
+      id: product._id,
+      name: product.name,
+      price: product.price,
+      img: product.img,
+      category: product.category,
+    }))
+    this.cartService.clear();
+    for (let i = 0; i < currentCartItems.length; i++) {
+      await this.cartService.addItem(currentCartItems[i])
+    }
+    this.dataObs$.next(this.getCartItems())
   }
 }

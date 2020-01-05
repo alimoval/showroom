@@ -34,12 +34,15 @@ mat-list-item {
 mat-card {
   margin: 1px;
   max-width: 200px;
-  padding: 2px!important;
+  padding: 0!important;
+  background: white!important;
+  margin-right: 1vh;
 }
 
 mat-card img {
   max-width: 237px;
-  margin: 10px;
+  margin: 0!important;
+  height: 232px;
 }
 
 mat-card-image {
@@ -56,6 +59,7 @@ mat-ink-bar {
 
 .mat-card-title {
   font-size: 18px;
+  color: black;
 }
 
 mat-card-content {
