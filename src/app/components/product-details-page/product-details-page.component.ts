@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Params, Router } from '@angular/router'
 
-import { switchMap } from 'rxjs/operators'
+import { switchMap, mergeMap } from 'rxjs/operators'
 
 import { CartService, BaseCartItem } from 'ng-shopping-cart';
 
@@ -35,11 +35,23 @@ export class ProductDetailsPageComponent implements OnInit {
   ngOnInit() {
     window.scrollTo(0, 0);
     this.getProductById()
-    .subscribe(product => {
-      this.product = product
-      console.log('this.product', this.product);
-    })
-    this.scroller.getData()
+      .pipe(
+        mergeMap(product => {
+          this.product = product;
+          console.log('this.product', this.product);
+          return this.shoppingcart.getData()
+        }),
+        mergeMap(data => {
+          this.cart = data;
+          console.log('this.cart', this.cart);
+          for(let i = 0; i < this.cart.length; i++){
+            if (this.cart[i].name == this.product.name) {
+              this.showItemsQuantity(this.cart[i].quantity);
+            }
+          }
+          return this.scroller.getData()
+        }),
+      )
       .subscribe(data => {
         if (this.router.url !== '/') {
           this.router.navigate(['/']).then(res => {
@@ -49,21 +61,16 @@ export class ProductDetailsPageComponent implements OnInit {
           });
         }
       })
-    this.shoppingcart.getData()
-      .subscribe(data => {
-        this.cart = data;
-        const detailsCartData = data.filter(item => {
-          console.log('item', item, 'item.id', item.id)
-          console.log('this.product.id', this.product.id)
-          return item.id === this.product.id;
-        })
-        console.log('this.cart', this.cart[0])
-      })
+
     if (window.innerWidth < 420) {
       this.switchCatalogItemsCount(1)
     } else {
       this.switchCatalogItemsCount(2)
     }
+  }
+
+  showItemsQuantity(data) {
+    console.log('@@@', data);
   }
 
   scrollToCategory(data) {

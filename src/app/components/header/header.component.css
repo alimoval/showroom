@@ -9,9 +9,10 @@
 
 .header-container {
     height: 6vh;
-    background: #ec4435;
+    background: #b8e0e4;
+    background-image: url("https://ibb.co/ZBvztWb");
+    background-repeat: no-repeat;
     text-align: center;
-    color: white;
     padding-top: 2vh;
     font-size: 20px;
     width:100%;
@@ -19,7 +20,8 @@
 
 .header-container a {
     text-decoration: none;
-    color: white;
+    /* color:  #31a8e0; */
+    color:  black;
     display: inline-block;
 }
 
@@ -37,8 +39,7 @@
 .nav-container{
   width: 100%;
   background: #fff;
-  height: 7vh;
-  padding: 4px;
+  height: 10vh;
   box-shadow: 0 4px 16px 0 rgba(33,33,33,0.24)!important;
 }
 
@@ -52,7 +53,7 @@
 }
 
 .navLogo > img {
-  max-height: 6vh;
+  max-height: 9vh;
 }
 
 .navList {
@@ -63,9 +64,21 @@
 .navList a {
   color: rgb(54, 54, 54);
   text-decoration: none;
-  padding: 20px;
+  padding: 20px 10px;
 }
 
 .navList a:target {
   border-bottom: 1px solid red;
+}
+
+.cart {
+  background-color: yellow;
+  border-radius: 3vh;
+  font-weight: 600;
+  font-size: 28px;
+  text-decoration: none;
+  color: black;
+  max-height: 6vh;
+  padding: 1vh 1vh 0 1vh;
+  margin-top: 1.5vh;
 }

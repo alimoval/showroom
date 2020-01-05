@@ -1,6 +1,6 @@
 <div class="header-wrapper">
   <div class="header-container">
-    <a href="tel:+380675101110">
+    <a href="tel:+380">
       <mat-icon>call</mat-icon>
       <b> (067) 510 11 10</b>
     </a>
@@ -30,7 +30,9 @@
           <a href="javascript:;" (click)="updateData('beer')">Пиво</a>
         </li>
       </ul>
-      <div class="cart"></div>
+      <a [routerLink]="'cart'" class="cart">
+        {{summ}}₴
+      </a>
     </nav>
   </div>
 </div>
