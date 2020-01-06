@@ -33,10 +33,10 @@ export class CatalogComponent implements OnInit {
   ngOnInit() {
     this.colsCounter = 4
     this.rowsCounter = 17
-    if (window.innerWidth < 640) {
+    if (window.innerWidth <= 640) {
       this.switchCatalogItemsCount(2)
     }
-    if (window.innerWidth <= 900) {
+    if (window.innerWidth > 640 && window.innerWidth <= 900) {
       this.switchCatalogItemsCount(3)
     }
     if (window.innerWidth > 900) {

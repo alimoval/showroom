@@ -54,6 +54,7 @@
 
 .navLogo > img {
   max-height: 9vh;
+  padding-top: 4px;
 }
 
 .navList {

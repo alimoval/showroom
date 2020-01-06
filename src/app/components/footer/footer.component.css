@@ -1,5 +1,5 @@
 div {
-    background: #ccc;
+    background: #5abec5;
     min-height: 10vh;
     padding-top: 6vh;
 }
@@ -8,4 +8,5 @@ p {
     max-width: 960px;
     margin: 0 auto;
     color: white;
+    padding-left: 5vh;
 }

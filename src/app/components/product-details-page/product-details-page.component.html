@@ -4,7 +4,7 @@
       <img *ngIf="product" [src]="product.img" alt="">
     </mat-grid-tile>
     <mat-grid-tile [colspan]="1" [rowspan]="3">
-      <div style="color:black; font-size: 46px; font-weight: 600; display: inline-block;">{{product.name}}</div>
+      <div style="color:black; font-size: 46px; font-weight: 600;">{{product.name}}</div>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="1" [rowspan]="2">
       <div *ngIf="product" style="color: rgb(237, 70, 41); font-size: 50px;">{{product.price}} грн</div>

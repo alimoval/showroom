@@ -96,7 +96,9 @@ export class ProductDetailsPageComponent implements OnInit {
   switchCatalogItemsCount(count) {
     this.colsCounter = count
     if (count == 2) {
-      this.rowsCounter = 17
+      this.rowsCounter = 14
+    } else if (count == 1) {
+      this.rowsCounter = 9
     } else {
       this.rowsCounter = 12
     }
