@@ -54,7 +54,7 @@ export class ProductDetailsPageComponent implements OnInit {
           this.router.navigate(['/']).then(res => {
             setTimeout(() => {
               this.scrollToCategory(data);
-            }, 300);
+            }, 400);
           });
         }
       })

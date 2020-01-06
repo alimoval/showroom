@@ -9,9 +9,7 @@ export class ShoppingcartService {
 
   constructor(
     private cartService: CartService<BaseCartItem>,
-  ) { 
-    console.log('cart initial', this.cartService.getItems())
-  }
+  ) { }
 
   getData() {
     return this.dataObs$;

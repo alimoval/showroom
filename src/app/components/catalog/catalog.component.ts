@@ -1,9 +1,15 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core'
 import { Router } from '@angular/router'
 
+import { mergeMap } from 'rxjs/operators'
+import { of, forkJoin } from 'rxjs'
+
+import { BaseCartItem } from 'ng-shopping-cart'
+
 import { Product } from '../../models/Product'
 import { ProductService } from '../../services/product/product.service'
 import { ScrollerService } from 'src/app/services/scroller/scroller.service'
+import { ShoppingcartService } from 'src/app/services/shopingcart/shopingcart.service';
 
 @Component({
   selector: 'app-catalog',
@@ -13,6 +19,7 @@ import { ScrollerService } from 'src/app/services/scroller/scroller.service'
 })
 export class CatalogComponent implements OnInit {
 
+  public cartItems: BaseCartItem[]
   public products: Product[]
   public riba: Product[] = []
   public meal: Product[] = []
@@ -27,7 +34,8 @@ export class CatalogComponent implements OnInit {
   constructor(
     private router: Router,
     private productService: ProductService,
-    private scroller: ScrollerService
+    private scroller: ScrollerService,
+    private shoppingcart: ShoppingcartService,
   ) { }
 
   ngOnInit() {
@@ -43,19 +51,45 @@ export class CatalogComponent implements OnInit {
       this.switchCatalogItemsCount(4)
     }
     this.getProducts()
-    this.scroller.getData().subscribe(data => {
-      this.scrollToCategory(data)
+      .pipe(mergeMap(products => {
+        const cartItems = this.shoppingcart.getData()
+        return forkJoin([of(products), of(cartItems)])
+      }),
+        mergeMap(([products, items]) => {
+        console.log('[ products, items ]', products, items)
+        const upProducts = products.map(product => {
+          product.quantity = 6
+          return product
+        })
+        console.log('upProducts', upProducts)
+
+        for (let i = 0; i < products.length; i++) {
+          this.handleProductItem(products[i])
+        }
+        const cartItems = this.shoppingcart.getCartItems()
+        for (let i = 0; i < cartItems.length; i++) {
+          let item = cartItems[i]
+          for (let b = 0; b < products.length; b++) {
+            let product = products[b]
+            if (item.name == product.name) {
+              console.log('@@@@@', i)
+            }
+          }
+        }
+        return of(products)
+      }),
+      mergeMap(data => {
+        return this.scroller.getData()
+      }),)
+    .subscribe(data => {
+      setTimeout(() => {
+        this.scrollToCategory(data);
+      }, 400);
     });
   }
 
   getProducts() {
-    this.productService.getProducts()
-      .subscribe(products => {
-        for (let i = 0; i < products.length; i++) {
-          this.handleProductItem(products[i])
-        }
-        this.products = products
-      })
+    return this.productService.getProducts()
   }
 
   handleProductItem(item) {
@@ -118,6 +152,14 @@ export class CatalogComponent implements OnInit {
     } else {
       this.rowsCounter = 20
     }
+  }
+
+  onClickRemoveButton(product) {
+
+  }
+
+  onClickAddButton(product) {
+    
   }
 
 }
