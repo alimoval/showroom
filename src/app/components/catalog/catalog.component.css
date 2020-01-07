@@ -82,20 +82,22 @@ mat-tab-body-wrapper {
   margin-bottom: 10px;
   color: white;
   background:rgb(237, 70, 41);
-  width: 36px;
-  height:32px;
+  width: 30px;
+  height:30px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 22px;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .add-button {
   margin-bottom: 10px;
   color: white;
   background:rgb(4, 175, 41);
-  width: 36px;
-  height:32px;
+  width: 30px;
+  height:30px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 22px;
+  font-size: 16px;
+  font-weight: 600;
 }
