@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core'
 import { Router } from '@angular/router'
 
-import { mergeMap } from 'rxjs/operators'
-import { of, forkJoin } from 'rxjs'
+import { mergeMap, flatMap } from 'rxjs/operators'
+import { of, combineLatest } from 'rxjs'
 
 import { BaseCartItem } from 'ng-shopping-cart'
 
@@ -51,30 +51,25 @@ export class CatalogComponent implements OnInit {
       this.switchCatalogItemsCount(4)
     }
     this.getProducts()
-      .pipe(mergeMap(products => {
+      .pipe(flatMap(products => {
         const cartItems = this.shoppingcart.getData()
-        return forkJoin([of(products), of(cartItems)])
+        return combineLatest([of(products), cartItems])
       }),
-        mergeMap(([products, items]) => {
-        console.log('[ products, items ]', products, items)
-        const upProducts = products.map(product => {
-          product.quantity = 6
-          return product
-        })
-        console.log('upProducts', upProducts)
-
+      flatMap(([products, items]) => {
+        const upProducts = []
         for (let i = 0; i < products.length; i++) {
-          this.handleProductItem(products[i])
-        }
-        const cartItems = this.shoppingcart.getCartItems()
-        for (let i = 0; i < cartItems.length; i++) {
-          let item = cartItems[i]
-          for (let b = 0; b < products.length; b++) {
-            let product = products[b]
+          let product = products[i]
+          product.quantity = 0
+          for (let b = 0; b < items.length; b++) {
+            let item = items[b]
             if (item.name == product.name) {
-              console.log('@@@@@', i)
+              product.quantity = item.quantity
             }
           }
+          upProducts.push(product)
+        }
+        for (let i = 0; i < upProducts.length; i++) {
+          this.handleProductItem(upProducts[i])
         }
         return of(products)
       }),
@@ -148,7 +143,7 @@ export class CatalogComponent implements OnInit {
     if (count == 2) {
       this.rowsCounter = 16
     } else if (count == 3) {
-      this.rowsCounter = 15
+      this.rowsCounter = 16
     } else {
       this.rowsCounter = 20
     }
