@@ -7,6 +7,7 @@ import { of, combineLatest } from 'rxjs'
 import { BaseCartItem } from 'ng-shopping-cart'
 
 import { Product } from '../../models/Product'
+
 import { ProductService } from '../../services/product/product.service'
 import { ScrollerService } from 'src/app/services/scroller/scroller.service'
 import { ShoppingcartService } from 'src/app/services/shopingcart/shopingcart.service';
@@ -69,6 +70,12 @@ export class CatalogComponent implements OnInit {
             }
             upProducts.push(product)
           }
+          this.riba = []
+          this.meal = []
+          this.krevetki = []
+          this.raki = []
+          this.sneaks = []
+          this.beer = []
           for (let i = 0; i < upProducts.length; i++) {
             this.handleProductItem(upProducts[i])
           }
@@ -151,11 +158,15 @@ export class CatalogComponent implements OnInit {
   }
 
   onClickRemoveButton(product) {
-
+    this.shoppingcart.removeQuantity(product)
   }
 
   onClickAddButton(product) {
-
+    if (product.quantity > 0) {
+      this.shoppingcart.addQuantity(product)
+    } else {
+      this.shoppingcart.addItem(product);
+    }
   }
 
 }

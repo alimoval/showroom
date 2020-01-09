@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Params, Router } from '@angular/router'
 
-import { switchMap, mergeMap, withLatestFrom } from 'rxjs/operators'
-import { of, merge } from 'rxjs'
+import { switchMap } from 'rxjs/operators'
+import { of } from 'rxjs'
 
 import { Product } from 'src/app/models/Product'
 
