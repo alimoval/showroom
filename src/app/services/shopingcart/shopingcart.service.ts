@@ -33,15 +33,39 @@ export class ShoppingcartService {
     this.dataObs$.next(this.getCartItems())
   }
 
-  addQuantity(cartItem) {
-    let updatedItem = new BaseCartItem({...cartItem, quantity: cartItem.quantity + 1})
+  removeCartItem(product) {
+    let currentCartItems = this.getCartItems();
+    for (let i = 0; i < currentCartItems.length; i++) {
+      if (currentCartItems[i].id === product._id) {
+        currentCartItems.splice(i, 1);
+      }
+    }
+    this.cartService.clear();
+    for (let i = 0; i < currentCartItems.length; i++) {
+      this.cartService.addItem(currentCartItems[i])
+    }
+    this.dataObs$.next(this.getCartItems())
+  }
+
+  addQuantity(product) {
+    let updatedItem = new BaseCartItem({
+      id: product._id,
+      name: product.name,
+      price: product.price,
+      quantity: product.quantity + 1})
     this.updateCartItems(updatedItem);
   }
 
-  removeQuantity(cartItem) {
-    if (cartItem.quantity > 0) {
-      let updatedItem = {...cartItem, quantity: cartItem.quantity - 1}
+  removeQuantity(product) {
+    if (product.quantity > 1) {
+      let updatedItem = new BaseCartItem({
+        id: product._id,
+        name: product.name,
+        price: product.price,
+        quantity: product.quantity - 1})
       this.updateCartItems(updatedItem);
+    } else {
+      this.removeCartItem(product)
     }
   }
 
@@ -51,8 +75,7 @@ export class ShoppingcartService {
       id: product._id,
       name: product.name,
       price: product.price,
-      img: product.img,
-      category: product.category,
+      quantity: product.quantity + 1,
     }))
     this.cartService.clear();
     for (let i = 0; i < currentCartItems.length; i++) {

@@ -9,9 +9,9 @@
             <mat-card-title>{{product.name}}</mat-card-title>
             <mat-card-title style="color:red; font-size: 22px;">{{product.price}} ₴</mat-card-title>
             <div class="cartOptions">
-              <button type="button" class="remove-button" (click)="onClickRemoveButton(product)">-</button>
-              <div style="padding: 0 10px; color: black; font-size: 24px;">{{product.quantity || 0}}</div>
-              <button type="button" class="add-button" (click)="onClickAddButton(product)">+</button>
+              <button type="button" class="remove-button" (click)="onClickRemoveButton(product); $event.stopPropagation(); $event.preventDefault();">-</button>
+              <div style="padding: 0 10px; color: black; font-size: 24px;">{{product.quantity}}</div>
+              <button type="button" class="add-button" (click)="onClickAddButton(product); $event.stopPropagation(); $event.preventDefault();">+</button>
             </div>
           </mat-card-content>
         </mat-card>
@@ -29,7 +29,7 @@
             <mat-card-title style="color:red; font-size: 22px;">{{product.price}} ₴</mat-card-title>
             <div class="cartOptions">
               <button type="button" class="remove-button" (click)="onClickRemoveButton(product); $event.stopPropagation(); $event.preventDefault();">-</button>
-              <div style="padding: 0 10px; color: black; font-size: 24px;">{{product.quantity || 0}}</div>
+              <div style="padding: 0 10px; color: black; font-size: 24px;">{{product.quantity}}</div>
               <button type="button" class="add-button" (click)="onClickAddButton(product); $event.stopPropagation(); $event.preventDefault();">+</button>
             </div>
           </mat-card-content>
@@ -48,7 +48,7 @@
             <mat-card-title style="color:red; font-size: 22px;">{{product.price}} ₴</mat-card-title>
             <div class="cartOptions">
               <button type="button" class="remove-button" (click)="onClickRemoveButton(product); $event.stopPropagation(); $event.preventDefault();">-</button>
-              <div style="padding: 0 10px; color: black; font-size: 24px;">{{product.quantity || 0}}</div>
+              <div style="padding: 0 10px; color: black; font-size: 24px;">{{product.quantity}}</div>
               <button type="button" class="add-button" (click)="onClickAddButton(product); $event.stopPropagation(); $event.preventDefault();">+</button>
             </div>
           </mat-card-content>
@@ -67,7 +67,7 @@
             <mat-card-title style="color:red; font-size: 22px;">{{product.price}} ₴</mat-card-title>
             <div class="cartOptions">
               <button type="button" class="remove-button" (click)="onClickRemoveButton(product); $event.stopPropagation(); $event.preventDefault();">-</button>
-              <div style="padding: 0 10px; color: black; font-size: 24px;">{{product.quantity || 0}}</div>
+              <div style="padding: 0 10px; color: black; font-size: 24px;">{{product.quantity}}</div>
               <button type="button" class="add-button" (click)="onClickAddButton(product); $event.stopPropagation(); $event.preventDefault();">+</button>
             </div>
           </mat-card-content>
@@ -86,7 +86,7 @@
             <mat-card-title style="color:red; font-size: 22px;">{{product.price}} ₴</mat-card-title>
             <div class="cartOptions">
               <button type="button" class="remove-button" (click)="onClickRemoveButton(product); $event.stopPropagation(); $event.preventDefault();">-</button>
-              <div style="padding: 0 10px; color: black; font-size: 24px;">{{product.quantity || 0}}</div>
+              <div style="padding: 0 10px; color: black; font-size: 24px;">{{product.quantity}}</div>
               <button type="button" class="add-button" (click)="onClickAddButton(product); $event.stopPropagation(); $event.preventDefault();">+</button>
             </div>
           </mat-card-content>

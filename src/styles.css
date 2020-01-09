@@ -8,3 +8,5 @@ html, body, .app-root {
   width: 100%;
   font-family: Montserrat, Roboto, sans-serif;
 }
+
+button:focus {outline:0;}

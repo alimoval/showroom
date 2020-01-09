@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Params, Router } from '@angular/router'
 
-import { switchMap, mergeMap } from 'rxjs/operators'
+import { switchMap, mergeMap, withLatestFrom } from 'rxjs/operators'
+import { of, merge } from 'rxjs'
 
 import { Product } from 'src/app/models/Product'
 
@@ -17,7 +18,6 @@ import { ShoppingcartService } from 'src/app/services/shopingcart/shopingcart.se
 export class ProductDetailsPageComponent implements OnInit {
 
   public product: Product
-  public cart: any
   public cartItem: any;
 
   colsCounter: number
@@ -33,19 +33,24 @@ export class ProductDetailsPageComponent implements OnInit {
 
   ngOnInit() {
     window.scrollTo(0, 0);
+
     this.getProductById()
       .pipe(
-        mergeMap(product => {
+        switchMap(product => {
           this.product = product;
-          return this.shoppingcart.getData()
+          this.product.quantity = 0;
+          return this.shoppingcart.getData();
         }),
-        mergeMap(data => {
-          this.cart = data;
-          for(let i = 0; i < this.cart.length; i++){
-            if (this.cart[i].name == this.product.name) {
-              this.showCartItemQuantity(this.cart[i]);
+        switchMap(cartItems => {
+          for (let i = 0; i < cartItems.length; i++) {
+            if (cartItems[i].name == this.product.name) {
+              this.product.quantity = cartItems[i].quantity
             }
           }
+          if (!cartItems.length) this.product.quantity = 0;
+          return of(cartItems)
+        }),
+        switchMap(data => {
           return this.scroller.getData()
         }),
       )
@@ -63,10 +68,6 @@ export class ProductDetailsPageComponent implements OnInit {
     } else {
       this.switchCatalogItemsCount(2)
     }
-  }
-
-  showCartItemQuantity(cartItem) {
-    this.cartItem = cartItem;
   }
 
   scrollToCategory(data) {
@@ -105,16 +106,14 @@ export class ProductDetailsPageComponent implements OnInit {
   }
 
   onClickAddButton() {
-    if (this.cartItem) {
-      this.shoppingcart.addQuantity(this.cartItem)
+    if (this.product.quantity > 0) {
+      this.shoppingcart.addQuantity(this.product)
     } else {
       this.shoppingcart.addItem(this.product);
     }
   }
 
   onClickRemoveButton() {
-    if (this.cartItem) {
-      this.shoppingcart.removeQuantity(this.cartItem)
-    }
+    this.shoppingcart.removeQuantity(this.product)
   }
 }

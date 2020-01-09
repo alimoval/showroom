@@ -51,36 +51,37 @@ export class CatalogComponent implements OnInit {
       this.switchCatalogItemsCount(4)
     }
     this.getProducts()
-      .pipe(flatMap(products => {
-        const cartItems = this.shoppingcart.getData()
-        return combineLatest([of(products), cartItems])
-      }),
-      flatMap(([products, items]) => {
-        const upProducts = []
-        for (let i = 0; i < products.length; i++) {
-          let product = products[i]
-          product.quantity = 0
-          for (let b = 0; b < items.length; b++) {
-            let item = items[b]
-            if (item.name == product.name) {
-              product.quantity = item.quantity
+      .pipe(
+        flatMap(products => {
+          const cartItems = this.shoppingcart.getData()
+          return combineLatest([of(products), cartItems])
+        }),
+        flatMap(([products, items]) => {
+          const upProducts = []
+          for (let i = 0; i < products.length; i++) {
+            let product = products[i]
+            product.quantity = 0
+            for (let b = 0; b < items.length; b++) {
+              let item = items[b]
+              if (item.name == product.name) {
+                product.quantity = item.quantity
+              }
             }
+            upProducts.push(product)
           }
-          upProducts.push(product)
-        }
-        for (let i = 0; i < upProducts.length; i++) {
-          this.handleProductItem(upProducts[i])
-        }
-        return of(products)
-      }),
-      mergeMap(data => {
-        return this.scroller.getData()
-      }),)
-    .subscribe(data => {
-      setTimeout(() => {
-        this.scrollToCategory(data);
-      }, 400);
-    });
+          for (let i = 0; i < upProducts.length; i++) {
+            this.handleProductItem(upProducts[i])
+          }
+          return of(products)
+        }),
+        mergeMap(data => {
+          return this.scroller.getData()
+        }))
+      .subscribe(data => {
+        setTimeout(() => {
+          this.scrollToCategory(data);
+        }, 400);
+      });
   }
 
   getProducts() {
@@ -154,7 +155,7 @@ export class CatalogComponent implements OnInit {
   }
 
   onClickAddButton(product) {
-    
+
   }
 
 }

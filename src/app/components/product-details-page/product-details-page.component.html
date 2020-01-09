@@ -10,10 +10,9 @@
       <div *ngIf="product" style="color: rgb(237, 70, 41); font-size: 50px;">{{product.price}} грн</div>
     </mat-grid-tile>
     <mat-grid-tile class="cartItem">
-        <button type="button" class="remove-button" (click)="onClickRemoveButton()">-</button>
-        <div *ngIf="cartItem" style="padding: 0 10px">{{cartItem.quantity | json}}</div>
-        <div *ngIf="!cartItem" style="padding: 0 10px">0</div>
-        <button type="button" class="add-button" (click)="onClickAddButton()">+</button>
+      <button type="button" class="remove-button" (click)="onClickRemoveButton()">-</button>
+      <div *ngIf="product" style="padding: 0 10px 10px 10px;">{{product.quantity}}</div>
+      <button type="button" class="add-button" (click)="onClickAddButton()">+</button>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
