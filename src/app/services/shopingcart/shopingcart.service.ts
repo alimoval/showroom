@@ -36,7 +36,7 @@ export class ShoppingcartService {
   removeCartItem(product) {
     let currentCartItems = this.getCartItems();
     for (let i = 0; i < currentCartItems.length; i++) {
-      if (currentCartItems[i].id === product._id) {
+      if (currentCartItems[i].id === product._id || currentCartItems[i].id === product.id) {
         currentCartItems.splice(i, 1);
       }
     }
@@ -47,26 +47,35 @@ export class ShoppingcartService {
     this.dataObs$.next(this.getCartItems())
   }
 
-  addQuantity(product) {
-    let updatedItem = new BaseCartItem({
-      id: product._id,
-      name: product.name,
-      price: product.price,
-      quantity: product.quantity + 1})
-    this.updateCartItems(updatedItem);
+  removeCartItems() {
+    this.cartService.clear();
+    this.dataObs$.next(this.getCartItems())
   }
 
   removeQuantity(product) {
     if (product.quantity > 1) {
       let updatedItem = new BaseCartItem({
-        id: product._id,
+        id: product._id || product.id,
         name: product.name,
         price: product.price,
-        quantity: product.quantity - 1})
+        quantity: product.quantity - 1,
+        image: product.img || product.image,
+      })
       this.updateCartItems(updatedItem);
     } else {
       this.removeCartItem(product)
     }
+  }
+
+  addQuantity(product) {
+    let updatedItem = new BaseCartItem({
+      id: product._id || product.id,
+      name: product.name,
+      price: product.price,
+      quantity: product.quantity + 1,
+      image: product.img || product.image,
+    })
+    this.updateCartItems(updatedItem);
   }
 
   async addItem(product) {
@@ -76,6 +85,7 @@ export class ShoppingcartService {
       name: product.name,
       price: product.price,
       quantity: product.quantity + 1,
+      image: product.img,
     }))
     this.cartService.clear();
     for (let i = 0; i < currentCartItems.length; i++) {

@@ -8,12 +8,12 @@
 }
 
 .header-container {
-    height: 6vh;
+    height: 5vh;
     background: #b8e0e4;
     background-image: url("https://ibb.co/ZBvztWb");
     background-repeat: no-repeat;
     text-align: center;
-    padding-top: 2vh;
+    padding-top: 1.5vh;
     font-size: 20px;
     width:100%;
 }
@@ -39,12 +39,12 @@
 .nav-container{
   width: 100%;
   background: #fff;
-  height: 10vh;
+  height: 14vh;
   box-shadow: 0 4px 16px 0 rgba(33,33,33,0.24)!important;
 }
 
 .navMenu {
-  max-width: 960px;
+  max-width: 1160px;
   margin: 0 auto;
   width: 90%;
   display: flex;
@@ -53,14 +53,15 @@
 }
 
 .navLogo > img {
-  max-height: 9vh;
-  padding-top: 4px;
+  max-height: 13vh;
+  padding-top: 3px;
 }
 
 .navList {
   display: flex;
   list-style-type: none;
   padding-inline-start: 0px;
+  padding-top: 2vh;
 }
 
 .navItem {
@@ -85,6 +86,6 @@
   text-decoration: none;
   color: black;
   max-height: 6vh;
-  padding: 1vh 1vh 0 1vh;
-  margin-top: 1.5vh;
+  padding: 1.5vh 1vh 0 1vh;
+  margin-top: 3vh;
 }

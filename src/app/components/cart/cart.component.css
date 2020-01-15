@@ -1,0 +1,87 @@
+button:focus {outline:0;}
+
+.cart-container {
+  max-width: 1160px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  width: 90%;
+}
+
+::ng-deep .mat-grid-tile .mat-figure {
+  justify-content: flex-start!important; 
+  flex-direction: column!important;
+}
+
+.cart-container mat-card {
+  background: white!important;
+  color: black!important;
+  width: 90%!important;
+  margin-top: 2vh!important;
+  min-height: 60px!important;
+}
+
+.form-tile .mat-figure {
+  justify-content: flex-end!important;
+}
+
+/* ::ng-deep mat-grid-list {
+  height: 100%!important;
+}
+
+::ng-deep mat-grid-list mat-grid-tile .item {
+  height: 100%!important;
+} */
+
+mat-list-item {
+  color: black!important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #ccc;
+}
+
+.mat-form-field-wrapper {
+  padding-bottom: 0px;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: green !important;
+ }
+
+ .cartOptions {
+  display: flex;
+}
+
+.remove-button {
+  margin-bottom: 10px;
+  color: white;
+  background:rgb(237, 70, 41);
+  width: 30px;
+  height:30px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.add-button {
+  margin-bottom: 10px;
+  color: white;
+  background:rgb(4, 175, 41);
+  width: 30px;
+  height:30px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.order-button {
+  height: 60px;
+  border-radius: 30px!important;
+  background: yellow;
+  color: black;
+  font-weight: 600;
+  font-size: 24px;
+}

@@ -1,7 +1,7 @@
 button:focus {outline:0;}
 
 .container {
-    max-width: 960px;
+    max-width: 1160px;
     margin: 0 auto;
     margin-bottom: 40px;
 }
@@ -13,6 +13,7 @@ img {
 .cartItem {
   font-size: 34px;
   padding: 20px 0 20px 0;
+  display: inline;
 }
 
 .cartItem .remove-button {

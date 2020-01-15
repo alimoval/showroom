@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ViewEncapsulation } from '@angular/core'
 import { ActivatedRoute, Params, Router } from '@angular/router'
 
 import { switchMap } from 'rxjs/operators'
@@ -13,7 +13,8 @@ import { ShoppingcartService } from 'src/app/services/shopingcart/shopingcart.se
 @Component({
   selector: 'app-product-details-page',
   templateUrl: './product-details-page.component.html',
-  styleUrls: ['./product-details-page.component.css']
+  styleUrls: ['./product-details-page.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ProductDetailsPageComponent implements OnInit {
 

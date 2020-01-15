@@ -16,7 +16,7 @@ import { ShoppingcartService } from 'src/app/services/shopingcart/shopingcart.se
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.css'],
-  encapsulation: ViewEncapsulation.None
+  // encapsulation: ViewEncapsulation.None
 })
 export class CatalogComponent implements OnInit {
 

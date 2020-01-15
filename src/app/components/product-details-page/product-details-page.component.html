@@ -11,7 +11,7 @@
     </mat-grid-tile>
     <mat-grid-tile class="cartItem">
       <button type="button" class="remove-button" (click)="onClickRemoveButton()">-</button>
-      <div *ngIf="product" style="padding: 0 10px 10px 10px;">{{product.quantity}}</div>
+      <p *ngIf="product" style="padding: 0 10px 10px 10px;">{{product.quantity}}</p>
       <button type="button" class="add-button" (click)="onClickAddButton()">+</button>
     </mat-grid-tile>
   </mat-grid-list>

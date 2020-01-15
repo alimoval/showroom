@@ -9,7 +9,7 @@ router.get('/products', function (req, res, next) {
         if (err) {
             res.send(err);
         }
-        console.log('[products]:', products)
+        // console.log('[products]:', products)
         res.json(products);
     });
 });
@@ -20,7 +20,7 @@ router.get('/products/:category', function (req, res, next) {
         if (err) {
             res.send(err);
         }
-        console.log('[products dsfdsfsdf]:', products)
+        // console.log('[products dsfdsfsdf]:', products)
         res.json(products);
     });
 });
@@ -30,7 +30,7 @@ router.get('/product/:id', function (req, res, next) {
         if (err) {
             res.send(err);
         }
-        console.log('[product]:', product)
+        // console.log('[product]:', product)
         res.json(product);
     });
 });

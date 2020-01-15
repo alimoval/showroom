@@ -1,0 +1,77 @@
+<div class="cart-container">
+  <mat-grid-list [cols]="6" rowHeight="10px">
+    <mat-grid-tile [colspan]="3" [rowspan]="70">
+      <mat-grid-list [cols]="1" rowHeight="10px" style="width: 100%; height: 100%;">
+        <mat-grid-tile class="cart-list-container" [colspan]="1" [rowspan]="10" *ngFor="let item of cart">
+          <mat-card>
+            <mat-grid-list [cols]="6" rowHeight="26px">
+              <mat-grid-tile [colspan]="1" [rowspan]="2" class="item">
+                <img mat-card-avatar [src]="item.image">
+              </mat-grid-tile>
+              <mat-grid-tile [colspan]="2" [rowspan]="2" class="item">
+                {{item.name}}
+              </mat-grid-tile>
+              <mat-grid-tile [colspan]="2" [rowspan]="2">
+                <div class="cartOptions">
+                  <button type="button" class="remove-button"
+                    (click)="onClickRemoveButton(item); $event.stopPropagation(); $event.preventDefault();">-</button>
+                  <div style="padding: 0 10px; color: black; font-size: 24px;">{{item.quantity}}</div>
+                  <button type="button" class="add-button"
+                    (click)="onClickAddButton(item); $event.stopPropagation(); $event.preventDefault();">+</button>
+                </div>
+              </mat-grid-tile>
+              <mat-grid-tile [colspan]="1" [rowspan]="2">
+                {{item.price}} ₴
+              </mat-grid-tile>
+            </mat-grid-list>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="3" [rowspan]="50" class="form-tile">
+      <form *ngIf="form" [formGroup]="form" (ngSubmit)="submit()" style="width: 100%; height: 100%;">
+        <mat-grid-list [cols]="1" rowHeight="18px">
+          <mat-grid-tile [colspan]="1" [rowspan]="4" class="input">
+            <div style="margin-right: 10px; position: absolute; left: 20%">Имя:</div>
+            <mat-form-field [floatLabel]="never" [color]="primary" appearance="outline">
+              <input matInput formControlName="name">
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="4">
+            <span style="margin-right: 10px; position: absolute; left: 20%">Телефон:</span>
+            <mat-form-field [floatLabel]="never" [color]="primary" appearance="outline">
+              <input matInput formControlName="phone">
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="4" class="input">
+            <span style="margin-right: 10px; position: absolute; left: 20%">Улица:</span>
+            <mat-form-field [floatLabel]="never" [color]="primary" appearance="outline">
+              <input matInput formControlName="street">
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="4">
+            <span style="margin-right: 10px; position: absolute; left: 20%">Дом:</span>
+            <mat-form-field [floatLabel]="never" [color]="primary" appearance="outline">
+              <input matInput formControlName="house">
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="4" class="input">
+            <span style="margin-right: 10px; position: absolute; left: 20%">Квартира:</span>
+            <mat-form-field [floatLabel]="never" [color]="primary" appearance="outline">
+              <input matInput formControlName="flat">
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="5">
+            <span style="margin-right: 10px; position: absolute; left: 20%">Комментарий:</span>
+            <mat-form-field [floatLabel]="never" [color]="primary" appearance="outline">
+              <textarea matInput formControlName="comment"></textarea>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="4">
+            <button class="order-button" type="submit" mat-raised-button>Сделать Заказ</button>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </form>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
