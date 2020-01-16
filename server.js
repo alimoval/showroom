@@ -30,15 +30,7 @@ app.use('/api', apiHandler);
 
 // Use redirect for all client requests
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist/showroom/index.html'));
-});
-
-app.configure(function() {
-  app.use('/', express.static(__dirname + '/'));
-});
-
-app.get('*', function(request, response, next) {
-  response.sendfile(__dirname + '/index.html');
+    res.sendFile(path.join(__dirname, 'showroom/index.html'));
 });
 
 app.listen(PORT, function() {
