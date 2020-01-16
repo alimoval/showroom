@@ -33,6 +33,14 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/showroom/index.html'));
 });
 
+app.configure(function() {
+  app.use('/', express.static(__dirname + '/'));
+});
+
+app.get('*', function(request, response, next) {
+  response.sendfile(__dirname + '/index.html');
+});
+
 app.listen(PORT, function() {
     console.log('server started on port %s', PORT);
 });
