@@ -1,4 +1,4 @@
-<div class="header-wrapper">
+<div class="header-wrapper" (window:resize)="onResize($event)">
   <div class="header-container">
     <a href="tel:+380633132555">
       <mat-icon>call</mat-icon>
@@ -31,6 +31,7 @@
         </li>
       </ul>
       <a [routerLink]="'cart'" class="cart">
+        <mat-icon style="color: black;">shopping_cart</mat-icon>
         {{summ}}₴
       </a>
     </nav>

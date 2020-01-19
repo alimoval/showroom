@@ -8,7 +8,7 @@ import { ShoppingcartService } from 'src/app/services/shopingcart/shopingcart.se
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  public padding: any;
   public summ: any;
 
   constructor(
@@ -25,9 +25,22 @@ export class HeaderComponent implements OnInit {
         }
         this.summ = summ;
       })
+      this.padding = { 'padding': '3vh 2vh 0.1vh 0vh!important' };
   }
 
   updateData(value: string) {
     this.scroller.updateData(value);
   }
+
+  onResize(event) {
+    if (event.target.innerWidth <= 640) {
+      console.log(event.target.innerWidth);
+    } else if (event.target.innerWidth > 640 && event.target.innerWidth <= 900) {
+      this.padding = '2vh 4vh 0.1vh 0vh'
+      console.log(event.target.innerWidth);
+    } else if (event.target.innerWidth > 900) {
+      this.padding = '3vh 6vh 0.1vh 0vh'
+      console.log(event.target.innerWidth);
+    }
+  } 
 }
