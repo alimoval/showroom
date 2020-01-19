@@ -19,6 +19,8 @@ import { ShoppingcartService } from 'src/app/services/shopingcart/shopingcart.se
 export class CartComponent implements OnInit {
   public cart: any;
   public form: FormGroup;
+  public colsVar: any;
+  public rowsVar: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,6 +30,7 @@ export class CartComponent implements OnInit {
     public dialog: MatDialog,
   ) {
     this.form = null;
+    this.colsVar = 6;
   }
 
   ngOnInit() {
@@ -37,6 +40,7 @@ export class CartComponent implements OnInit {
     this.shoppingcart.getData()
       .pipe(switchMap(data => {
         this.cart = data;
+        this.rowsVar = this.cart.length * 10;
         return this.scroller.getData()
       }))
       .subscribe(data => {
@@ -112,6 +116,14 @@ export class CartComponent implements OnInit {
     }
   }
 
+  onResize(event) {
+    if (event.target.innerWidth <= 690) {
+      this.colsVar = 6;
+    } else if (event.target.innerWidth > 690) {
+      this.colsVar = 3;
+    }
+
+  }
 }
 
 @Component({

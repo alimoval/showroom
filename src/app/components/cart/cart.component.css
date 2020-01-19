@@ -1,10 +1,21 @@
-button:focus {outline:0;}
+@media screen and (max-width: 420px) {
+  .cart-container {
+    max-width: 1160px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    width: 100%;
+  }
+}
+
+button:focus {
+  outline: 0;
+}
 
 .cart-container {
   max-width: 1160px;
   margin: 0 auto;
   margin-bottom: 40px;
-  width: 90%;
+  width: 100%;
 }
 
 ::ng-deep .mat-grid-tile .mat-figure {
@@ -18,6 +29,8 @@ button:focus {outline:0;}
   width: 90%!important;
   margin-top: 2vh!important;
   min-height: 60px!important;
+  width: 100%;
+  padding: 0vh;
 }
 
 .form-tile .mat-figure {
@@ -84,4 +97,9 @@ mat-list-item {
   color: black;
   font-weight: 600;
   font-size: 24px;
+}
+
+.mat-card-avatar {
+  min-height: 8vh;
+  min-width: 7vh;
 }
