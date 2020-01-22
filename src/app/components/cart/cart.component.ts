@@ -52,6 +52,11 @@ export class CartComponent implements OnInit {
           });
         }
       })
+      if (window.innerWidth <= 470) {
+        this.colsVar = 6;
+      } else {
+        this.colsVar = 3;
+      }
   }
 
   private initForm = () => {

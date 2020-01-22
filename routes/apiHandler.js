@@ -1,7 +1,10 @@
 const express = require('express');
 const mongojs = require('mongojs');
 
-const db = mongojs('alik:alik1234@ds151451.mlab.com:51451/showroom');
+// const db = mongojs('alik:alik1234@ds151451.mlab.com:51451/showroom');
+const db = mongojs('mongodb+srv://redperch:j,\dBydR6<8B-W=H@cluster0-0x9ut.mongodb.net/redperch');
+
+
 const router = express.Router();
 
 router.get('/products', function (req, res, next) {
@@ -9,7 +12,7 @@ router.get('/products', function (req, res, next) {
         if (err) {
             res.send(err);
         }
-        // console.log('[products]:', products)
+        console.log('[products]:', products)
         res.json(products);
     });
 });
