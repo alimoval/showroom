@@ -1,15 +1,23 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 import { BehaviorSubject } from 'rxjs';
 
 import { CartService, BaseCartItem } from 'ng-shopping-cart';
+import { environment } from '../../../environments/environment'
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class ShoppingcartService {
   private dataObs$ = new BehaviorSubject(this.getCartItems());
+  public base: string;
 
   constructor(
     private cartService: CartService<BaseCartItem>,
-  ) { }
+    private http: HttpClient,
+  ) { 
+    this.base = environment.serverConfig.host + environment.serverConfig.port
+  }
 
   getData() {
     return this.dataObs$;
@@ -92,5 +100,14 @@ export class ShoppingcartService {
       await this.cartService.addItem(currentCartItems[i])
     }
     this.dataObs$.next(this.getCartItems())
+  }
+
+  sendMail(form) {
+    return this.http.post(this.base + '/api/utils/order', form)
+    .pipe(
+      catchError(e => {
+        throw new Error(e)
+      })
+    );
   }
 }

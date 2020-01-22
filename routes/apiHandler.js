@@ -1,8 +1,10 @@
 const express = require('express');
 const mongojs = require('mongojs');
+const nodemailer = require("nodemailer");
+var smtpTransport = require('nodemailer-smtp-transport');
 
-// const db = mongojs('alik:alik1234@ds151451.mlab.com:51451/showroom');
-const db = mongojs('mongodb+srv://redperch:j,\dBydR6<8B-W=H@cluster0-0x9ut.mongodb.net/redperch');
+const db = mongojs('alik:alik1234@ds151451.mlab.com:51451/showroom');
+// const db = mongojs('mongodb+srv://redperch:j,\dBydR6<8B-W=H@cluster0-0x9ut.mongodb.net/redperch');
 
 
 const router = express.Router();
@@ -37,5 +39,34 @@ router.get('/product/:id', function (req, res, next) {
         res.json(product);
     });
 });
+
+router.post('/utils/order', function(req, res, next) {
+  console.log('@@@@@@@@@', req.body);
+
+  var transporter = nodemailer.createTransport(smtpTransport({
+    service: 'gmail',
+    host: 'smtp.gmail.com',
+    auth: {
+      user: 'alik.develop@gmail.com',
+      pass: ''
+    }
+  }));
+
+  const mailOptions = {
+    from: 'alik.develop@gmail.com',
+    to: 'alik.develop@gmail.com',
+    subject: 'Red Perch Order',
+    text: `НОВЫЙ ЗАКАЗ: ${req.body}`
+  };
+
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });  
+  
+})
 
 module.exports = router;

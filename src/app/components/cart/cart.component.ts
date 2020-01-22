@@ -88,6 +88,8 @@ export class CartComponent implements OnInit {
           ([form, cart]) => {
             this.showModal(form);
             this.form.reset();
+            this.shoppingcart.sendMail(form)
+            .subscribe(data => console.log(data));
             this.shoppingcart.removeCartItems();
             this.form.markAsPristine();
             this.form.markAsUntouched();
