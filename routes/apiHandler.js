@@ -41,8 +41,6 @@ router.get('/product/:id', function (req, res, next) {
 });
 
 router.post('/utils/order', function(req, res, next) {
-  console.log('@@@@@@@@@', req.body);
-
   var transporter = nodemailer.createTransport(smtpTransport({
     service: 'gmail',
     host: 'smtp.gmail.com',
@@ -51,12 +49,18 @@ router.post('/utils/order', function(req, res, next) {
       pass: ''
     }
   }));
-
+  let message = '<div>НОВЫЙ ЗАКАЗ:</div><div style="display: flex; flex-direction: column;">';
+  for (let i = 0; i < req.body.cart.length; i++) {
+    const item = `<div><p>${req.body.cart[i].name}</p><p>${req.body.cart[i].quantity}</p></div>`;
+    message += item;
+  }
+  message += `</div>`;
+  message += `<div>от ${req.body.form.name} ${req.body.form.phone} ${req.body.form.street} ${req.body.form.house} ${req.body.form.flat} ${req.body.form.comment}</div>`;
   const mailOptions = {
     from: 'alik.develop@gmail.com',
     to: 'alik.develop@gmail.com',
     subject: 'Red Perch Order',
-    text: `НОВЫЙ ЗАКАЗ: ${req.body}`
+    html: message,
   };
 
   transporter.sendMail(mailOptions, function(error, info){

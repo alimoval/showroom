@@ -52,11 +52,11 @@ export class CartComponent implements OnInit {
           });
         }
       })
-      if (window.innerWidth <= 470) {
-        this.colsVar = 6;
-      } else {
-        this.colsVar = 3;
-      }
+    if (window.innerWidth <= 470) {
+      this.colsVar = 6;
+    } else {
+      this.colsVar = 3;
+    }
   }
 
   private initForm = () => {
@@ -83,17 +83,19 @@ export class CartComponent implements OnInit {
   public submit = () => {
     if (this.form.valid) {
       of(this.form.value)
-        .pipe(switchMap(form => forkJoin([of(form), of(this.cart)])))
-        .subscribe(
-          ([form, cart]) => {
+        .pipe(
+          switchMap(form => forkJoin([of(form), of(this.cart)])),
+          switchMap(([form, cart]) => {
             this.showModal(form);
             this.form.reset();
-            this.shoppingcart.sendMail(form)
-            .subscribe(data => console.log(data));
             this.shoppingcart.removeCartItems();
             this.form.markAsPristine();
             this.form.markAsUntouched();
-            console.log('[ ORDER SUCCESS ]', form, cart);
+            return this.shoppingcart.sendMail(form, cart)
+          }))
+        .subscribe(
+          data => {
+            console.log('[ ORDER SUCCESS ]', data);
           },
           err => {
             console.log('[ ORDER ERROR ]', err);

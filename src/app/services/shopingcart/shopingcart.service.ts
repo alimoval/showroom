@@ -102,8 +102,9 @@ export class ShoppingcartService {
     this.dataObs$.next(this.getCartItems())
   }
 
-  sendMail(form) {
-    return this.http.post(this.base + '/api/utils/order', form)
+  sendMail(form, cart) {
+    const body = { form, cart };
+    return this.http.post(this.base + '/api/utils/order', body)
     .pipe(
       catchError(e => {
         throw new Error(e)

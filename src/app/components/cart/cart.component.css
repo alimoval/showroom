@@ -37,14 +37,6 @@ button:focus {
   justify-content: flex-end!important;
 }
 
-/* ::ng-deep mat-grid-list {
-  height: 100%!important;
-}
-
-::ng-deep mat-grid-list mat-grid-tile .item {
-  height: 100%!important;
-} */
-
 mat-list-item {
   color: black!important;
 }
@@ -57,12 +49,7 @@ mat-list-item {
   padding-bottom: 0px;
 }
 
-::ng-deep .mat-focused .mat-form-field-label {
-  /*change color of label*/
-  color: green !important;
- }
-
- .cartOptions {
+.cartOptions {
   display: flex;
 }
 
