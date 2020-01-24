@@ -26,11 +26,12 @@ button:focus {
 .cart-container mat-card {
   background: white!important;
   color: black!important;
-  width: 90%!important;
+  width: 96%!important;
   margin-top: 2vh!important;
   min-height: 60px!important;
+  height: 11vh;
   width: 100%;
-  padding: 0vh;
+  padding: 2vh 0 0 0;
 }
 
 .form-tile .mat-figure {
@@ -88,5 +89,9 @@ mat-list-item {
 
 .mat-card-avatar {
   min-height: 8vh;
-  min-width: 7vh;
+  min-width: 8vh;
+}
+
+.mat-card:not([class*=mat-elevation-z]) {
+  box-shadow: 0 2px 6px -1px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
 }
