@@ -7,7 +7,7 @@ button:focus {outline:0;}
 }
 
 img {
-    max-width: 700px;
+    max-width: 600px;
 }
 
 .cartItem {
@@ -32,7 +32,7 @@ img {
   color: white;
   background:rgb(4, 175, 41);
   width: 46px;
-  height:42px;
+  height: 42px;
   border-radius: 8px;
   cursor: pointer;
   font-size: 30px;
