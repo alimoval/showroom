@@ -1,7 +1,8 @@
 .listsWrapper {
   max-width: 1160px;
-  width: 90%;
+  width: 97%;
   margin: 0 auto;
+  padding-left: 2px;
 }
 
 mat-grid-list {

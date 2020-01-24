@@ -1,6 +1,6 @@
 <div class="listsWrapper" (window:resize)="onResize($event)">
   <h2 id="riba">Рыба</h2>
-  <mat-grid-list *ngIf="riba" [cols]="colsCounter" rowHeight="20px">
+  <mat-grid-list *ngIf="riba" [cols]="colsCounter" rowHeight="22px">
     <mat-grid-tile *ngFor="let product of riba" [colspan]="1" [rowspan]="rowsCounter">
       <a [routerLink]="['/product/', product._id]">
         <mat-card>
@@ -19,7 +19,7 @@
     </mat-grid-tile>
   </mat-grid-list>
   <h2 id="meal">Мясо</h2>
-  <mat-grid-list *ngIf="meal" [cols]="colsCounter" rowHeight="20px">
+  <mat-grid-list *ngIf="meal" [cols]="colsCounter" rowHeight="22px">
     <mat-grid-tile *ngFor="let product of meal" [colspan]="1" [rowspan]="rowsCounter">
       <a [routerLink]="['/product/', product._id]">
         <mat-card>
@@ -38,7 +38,7 @@
     </mat-grid-tile>
   </mat-grid-list>
   <h2 id="krevetki">Креветки</h2>
-  <mat-grid-list #list *ngIf="krevetki" [cols]="colsCounter" rowHeight="20px">
+  <mat-grid-list #list *ngIf="krevetki" [cols]="colsCounter" rowHeight="22px">
     <mat-grid-tile *ngFor="let product of krevetki" [colspan]="1" [rowspan]="rowsCounter">
       <a [routerLink]="['/product/', product._id]">
         <mat-card>
@@ -57,7 +57,7 @@
     </mat-grid-tile>
   </mat-grid-list>
   <h2 id="raki">Раки</h2>
-  <mat-grid-list *ngIf="raki" [cols]="colsCounter" rowHeight="20px">
+  <mat-grid-list *ngIf="raki" [cols]="colsCounter" rowHeight="22px">
     <mat-grid-tile *ngFor="let product of raki" [colspan]="1" [rowspan]="rowsCounter">
       <a [routerLink]="['/product/', product._id]">
         <mat-card>
@@ -76,7 +76,7 @@
     </mat-grid-tile>
   </mat-grid-list>
   <h2 id="sneaks">Снэки</h2>
-  <mat-grid-list *ngIf="sneaks" [cols]="colsCounter" rowHeight="20px">
+  <mat-grid-list *ngIf="sneaks" [cols]="colsCounter" rowHeight="22px">
     <mat-grid-tile *ngFor="let product of sneaks" [colspan]="1" [rowspan]="rowsCounter">
       <a [routerLink]="['/product/', product._id]">
         <mat-card>
@@ -95,7 +95,7 @@
     </mat-grid-tile>
   </mat-grid-list>
   <h2 id="beer">Пиво</h2>
-  <mat-grid-list #list *ngIf="beer" [cols]="colsCounter" rowHeight="20px">
+  <mat-grid-list #list *ngIf="beer" [cols]="colsCounter" rowHeight="22px">
     <mat-grid-tile *ngFor="let product of beer" [colspan]="1" [rowspan]="rowsCounter">
       <a [routerLink]="['/product/', product._id]">
         <mat-card>
