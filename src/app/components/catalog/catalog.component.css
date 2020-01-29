@@ -38,6 +38,7 @@ mat-card {
   padding: 0!important;
   background: white!important;
   margin-right: 1vh;
+  height: 358px;
 }
 
 mat-card img {

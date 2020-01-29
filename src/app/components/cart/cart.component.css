@@ -26,10 +26,10 @@ button:focus {
 .cart-container mat-card {
   background: white!important;
   color: black!important;
-  width: 96%!important;
+  width: 98%!important;
   margin-top: 2vh!important;
   min-height: 60px!important;
-  height: 11vh;
+  height: 9vh;
   width: 100%;
   padding: 2vh 0 0 0;
 }
@@ -88,8 +88,8 @@ mat-list-item {
 }
 
 .mat-card-avatar {
-  min-height: 8vh;
-  min-width: 8vh;
+  min-height: 7vh;
+  min-width: 7vh;
 }
 
 .mat-card:not([class*=mat-elevation-z]) {

@@ -32,12 +32,16 @@ export class CatalogComponent implements OnInit {
   public colsCounter: number
   public rowsCounter: number
 
+  public bottomImageUrl: string
+
   constructor(
     private router: Router,
     private productService: ProductService,
     private scroller: ScrollerService,
     private shoppingcart: ShoppingcartService,
-  ) { }
+  ) { 
+    this.bottomImageUrl = 'https://i.ibb.co/NFZjPP4/7.png';
+  }
 
   ngOnInit() {
     this.colsCounter = 4
