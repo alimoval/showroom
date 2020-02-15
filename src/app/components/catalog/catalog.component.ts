@@ -47,10 +47,10 @@ export class CatalogComponent implements OnInit {
     this.colsCounter = 4
     this.rowsCounter = 17
     if (window.innerWidth <= 640) {
-      this.switchCatalogItemsCount(2)
+      this.switchCatalogItemsCount(1)
     }
     if (window.innerWidth > 640 && window.innerWidth <= 900) {
-      this.switchCatalogItemsCount(3)
+      this.switchCatalogItemsCount(2)
     }
     if (window.innerWidth > 900) {
       this.switchCatalogItemsCount(4)
@@ -142,9 +142,9 @@ export class CatalogComponent implements OnInit {
 
   onResize(event) {
     if (event.target.innerWidth <= 640) {
-      this.switchCatalogItemsCount(2)
+      this.switchCatalogItemsCount(1)
     } else if (event.target.innerWidth > 640 && event.target.innerWidth <= 900) {
-      this.switchCatalogItemsCount(3)
+      this.switchCatalogItemsCount(2)
     } else if (event.target.innerWidth > 900) {
       this.switchCatalogItemsCount(4)
     }

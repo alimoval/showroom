@@ -3,6 +3,7 @@
   width: 97%;
   margin: 0 auto;
   padding-left: 2px;
+  box-sizing: border-box;
 }
 
 mat-grid-list {
@@ -32,17 +33,23 @@ mat-list-item {
   float: right;
 }
 
+::ng-deep .mat-grid-tile {
+  height: 370px!important;
+}
+::ng-deep .mat-grid-tile .mat-figure {
+  height: 370px!important;
+}
+
 mat-card {
   margin: 1px;
-  max-width: 200px;
   padding: 0!important;
   background: white!important;
   margin-right: 1vh;
-  height: 358px;
+  height: 360px;
 }
 
 mat-card img {
-  max-width: 237px;
+  max-width: 310px;
   margin: 0!important;
   height: 232px;
 }
