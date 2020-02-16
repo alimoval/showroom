@@ -1,3 +1,9 @@
+<a [routerLink]="'cart'" class="cart">
+  <div class="bottom-order-button" (window:scroll)="onScroll($event)">
+    <span *ngIf="cartItems" style="font-size: 16px">товарiв у кошику: <b>{{cartItems.length}}</b></span>
+    <span *ngIf="cost" style="padding-left: 110px;">{{cost}}₴</span>
+  </div>
+</a>
 <div class="listsWrapper" (window:resize)="onResize($event)">
   <h2 id="riba">Риба</h2>
   <mat-grid-list *ngIf="riba" [cols]="colsCounter" rowHeight="18px">

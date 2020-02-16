@@ -118,3 +118,21 @@ mat-tab-body-wrapper {
 mat-card img {
   width: 100%;
 }
+
+.cart {
+  text-decoration: none;
+  color: black;
+}
+
+.bottom-order-button {
+  background: yellow;
+  position: absolute;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+  padding-left: 20px;
+  padding-top: 20px;
+  font-size: 24px;
+  font-weight: 600;
+  z-index: 1000;
+}

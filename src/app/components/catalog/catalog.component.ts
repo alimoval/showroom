@@ -20,7 +20,8 @@ import { ShoppingcartService } from 'src/app/services/shopingcart/shopingcart.se
 })
 export class CatalogComponent implements OnInit {
 
-  public cartItems: BaseCartItem[]
+  public cartItems: any[]
+  public cost: any;
   public products: Product[]
   public riba: Product[] = []
   public meal: Product[] = []
@@ -58,10 +59,16 @@ export class CatalogComponent implements OnInit {
     this.getProducts()
       .pipe(
         flatMap(products => {
-          const cartItems = this.shoppingcart.getData()
+          const cartItems = this.shoppingcart.getData();
           return combineLatest([of(products), cartItems])
         }),
         flatMap(([products, items]) => {
+          this.cartItems = items;
+          let summ = 0;
+          for (let i = 0; i < items.length; i++) {
+            summ += items[i].price * items[i].quantity;
+          }
+          this.cost = summ;
           const upProducts = []
           for (let i = 0; i < products.length; i++) {
             let product = products[i]
@@ -93,6 +100,10 @@ export class CatalogComponent implements OnInit {
           this.scrollToCategory(data);
         }, 400);
       });
+  }
+
+  ngAfterViewInit() {
+    (document.querySelector('.bottom-order-button') as HTMLElement).style.bottom = '-' + window.pageYOffset + 'px';
   }
 
   getProducts() {
@@ -171,6 +182,11 @@ export class CatalogComponent implements OnInit {
     } else {
       this.shoppingcart.addItem(product);
     }
+  }
+
+  onScroll(event) {
+    const pageYOffset = window.pageYOffset;
+    (document.querySelector('.bottom-order-button') as HTMLElement).style.bottom = '-' + (pageYOffset) + 'px';
   }
 
 }
