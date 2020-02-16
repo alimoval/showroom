@@ -1,7 +1,7 @@
 <a [routerLink]="'cart'" class="cart">
   <div class="bottom-order-button" (window:scroll)="onScroll($event)">
     <span *ngIf="cartItems" style="font-size: 16px">товарiв у кошику: <b>{{cartItems.length}}</b></span>
-    <span *ngIf="cost" style="padding-left: 110px;">{{cost}}₴</span>
+    <span *ngIf="cost" style="padding-left: 80px;">{{cost}}₴</span>
   </div>
 </a>
 <div class="listsWrapper" (window:resize)="onResize($event)">

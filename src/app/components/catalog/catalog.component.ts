@@ -104,8 +104,8 @@ export class CatalogComponent implements OnInit {
     window.addEventListener("scroll", function () {
       var st = window.pageYOffset || document.documentElement.scrollTop;
       if (st > lastScrollTop) {
-        // downscroll code
-        (document.querySelector('.bottom-order-button') as HTMLElement).style.bottom = '-' + (pageYOffset + 30) + 'px';
+        // downscroll code1
+        (document.querySelector('.bottom-order-button') as HTMLElement).style.bottom = '-' + (pageYOffset) + 'px';
       } else {
         // upscroll code
         (document.querySelector('.bottom-order-button') as HTMLElement).style.bottom = '-' + (pageYOffset) + 'px';
