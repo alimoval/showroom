@@ -104,7 +104,7 @@ export class CatalogComponent implements OnInit {
     window.addEventListener("scroll", function () {
       var st = window.pageYOffset || document.documentElement.scrollTop;
       if (st > lastScrollTop) {
-        // downscroll code1
+        // downscroll code
         (document.querySelector('.bottom-order-button') as HTMLElement).style.bottom = '-' + (pageYOffset + 60) + 'px';
       } else {
         // upscroll code
@@ -195,10 +195,4 @@ export class CatalogComponent implements OnInit {
       this.shoppingcart.addItem(product);
     }
   }
-
-  onScroll(event) {
-    console.log(window.screenY)
-    const pageYOffset = window.pageYOffset;
-  }
-
 }
