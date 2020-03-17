@@ -14,7 +14,7 @@ import { ShoppingcartService } from 'src/app/services/shopingcart/shopingcart.se
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
-  encapsulation: ViewEncapsulation.None,
+  // encapsulation: ViewEncapsulation.None,
 })
 export class CartComponent implements OnInit {
   public cart: any;
@@ -31,6 +31,7 @@ export class CartComponent implements OnInit {
   ) {
     this.form = null;
     this.colsVar = 6;
+    this.rowsVar = 0;
   }
 
   ngOnInit() {
@@ -51,7 +52,7 @@ export class CartComponent implements OnInit {
             }, 400);
           });
         }
-      })
+      });
     if (window.innerWidth <= 470) {
       this.colsVar = 6;
     } else {
