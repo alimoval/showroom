@@ -33,7 +33,6 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('----- window.innerWidth ----', window.innerWidth);
     if (window.innerWidth <= 470) {
       this.colsVar = 1;
     } else {
@@ -65,7 +64,7 @@ export class CartComponent implements OnInit {
       phone: ['', [Validators.required]],
       street: ['', [Validators.required]],
       house: ['', [Validators.required]],
-      flat: ['', [Validators.required]],
+      flat: [''],
       comment: [''],
     };
 
@@ -125,13 +124,11 @@ export class CartComponent implements OnInit {
   }
 
   onResize(event) {
-    console.log('----', event.target.innerWidth)
     if (event.target.innerWidth <= 470) {
       this.colsVar = 1;
     } else if (event.target.innerWidth > 470) {
       this.colsVar = 2;
     }
-
   }
 }
 
