@@ -29,8 +29,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/api', apiHandler);
 
 // Use redirect for all client requests
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist/showroom/index.html'));
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'dist/showroom/index.html'));
+// });
+app.get('/*', function(req,res) {
+  res.sendFile(path.join(__dirname + '/dist/index.html'));
 });
 
 app.listen(PORT, function() {
