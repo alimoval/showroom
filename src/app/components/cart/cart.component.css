@@ -1,53 +1,24 @@
-@media screen and (max-width: 420px) {
-  .cart-container {
-    max-width: 1160px;
-    margin: 0 auto;
-    margin-bottom: 40px;
-    width: 100%;
-  }
-}
+/* @media screen and (max-width: 420px) {
+  
+} */
+
+/* .cart-container {
+  max-width: 1160px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+} */
+
+/* ::ng-deep .mat-grid-tile .mat-figure {
+  justify-content: flex-start!important; 
+  flex-direction: column!important;
+} */
 
 button:focus {
   outline: 0;
 }
 
-.cart-container {
-  max-width: 1160px;
-  margin: 0 auto;
-  margin-bottom: 40px;
-  width: 100%;
-}
-
-::ng-deep .mat-grid-tile .mat-figure {
-  justify-content: flex-start!important; 
-  flex-direction: column!important;
-}
-
-.cart-container mat-card {
-  background: white!important;
-  color: black!important;
-  width: 98%!important;
-  margin-top: 2vh!important;
-  min-height: 60px!important;
-  height: 9vh;
-  width: 100%;
-  padding: 2vh 0 0 0;
-}
-
-.form-tile .mat-figure {
-  justify-content: flex-end!important;
-}
-
-mat-list-item {
-  color: black!important;
-}
-
 .mat-form-field-appearance-outline .mat-form-field-outline {
   color: #ccc;
-}
-
-.mat-form-field-wrapper {
-  padding-bottom: 0px;
 }
 
 .cartOptions {
@@ -62,7 +33,7 @@ mat-list-item {
   height:30px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 19px;
   font-weight: 600;
 }
 
@@ -71,11 +42,12 @@ mat-list-item {
   color: white;
   background:rgb(4, 175, 41);
   width: 30px;
-  height:30px;
+  height: 30px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 19px;
   font-weight: 600;
+  line-height: 27px;
 }
 
 .order-button {
@@ -85,11 +57,6 @@ mat-list-item {
   color: black;
   font-weight: 600;
   font-size: 24px;
-}
-
-.mat-card-avatar {
-  min-height: 7vh;
-  min-width: 7vh;
 }
 
 .mat-card:not([class*=mat-elevation-z]) {

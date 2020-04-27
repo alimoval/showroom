@@ -14,7 +14,7 @@ import { ShoppingcartService } from 'src/app/services/shopingcart/shopingcart.se
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
-  // encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class CartComponent implements OnInit {
   public cart: any;
@@ -30,17 +30,23 @@ export class CartComponent implements OnInit {
     public dialog: MatDialog,
   ) {
     this.form = null;
-    this.colsVar = 6;
-    this.rowsVar = 0;
+    this.colsVar = 1;
+    this.rowsVar = 11;
   }
 
   ngOnInit() {
+    console.log('----- window.innerWidth ----', window.innerWidth);
+    if (window.innerWidth <= 470) {
+      this.colsVar = 1;
+    } else {
+      this.colsVar = 2;
+    }
     window.scrollTo(0, 0);
     this.form = this.formBuilder.group(this.initForm());
 
     this.shoppingcart.getData()
       .pipe(switchMap(data => {
-        this.cart = data;
+        this.cart = [...data];
         this.rowsVar = this.cart.length * 10;
         return this.scroller.getData()
       }))
@@ -53,11 +59,6 @@ export class CartComponent implements OnInit {
           });
         }
       });
-    if (window.innerWidth <= 470) {
-      this.colsVar = 6;
-    } else {
-      this.colsVar = 3;
-    }
   }
 
   private initForm = () => {
@@ -127,10 +128,11 @@ export class CartComponent implements OnInit {
   }
 
   onResize(event) {
-    if (event.target.innerWidth <= 690) {
-      this.colsVar = 6;
-    } else if (event.target.innerWidth > 690) {
-      this.colsVar = 3;
+    console.log('----', event.target.innerWidth)
+    if (event.target.innerWidth <= 470) {
+      this.colsVar = 1;
+    } else if (event.target.innerWidth > 470) {
+      this.colsVar = 2;
     }
 
   }

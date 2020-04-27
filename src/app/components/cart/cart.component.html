@@ -1,77 +1,70 @@
-<div class="cart-container" (window:resize)="onResize($event)">
-  <mat-grid-list [cols]="6" rowHeight="10px">
-    <mat-grid-tile [colspan]="colsVar" [rowspan]="rowsVar">
-      <mat-grid-list [cols]="1" rowHeight="10px" style="width: 100%; height: 100%;">
-        <mat-grid-tile class="cart-list-container" [colspan]="1" [rowspan]="10" *ngFor="let item of cart">
-          <mat-card>
-            <mat-grid-list cols="12" rowHeight="26px">
-              <mat-grid-tile [colspan]="2" [rowspan]="2" class="item">
-                <img mat-card-avatar [src]="item.image">
-              </mat-grid-tile>
-              <mat-grid-tile [colspan]="4" [rowspan]="2" class="item">
-                {{item.name}}
-              </mat-grid-tile>
-              <mat-grid-tile [colspan]="4" [rowspan]="2">
-                <div class="cartOptions">
-                  <button type="button" class="remove-button"
-                    (click)="onClickRemoveButton(item); $event.stopPropagation(); $event.preventDefault();">-</button>
-                  <div style="padding: 0 10px; color: black; font-size: 24px;">{{item.quantity}}</div>
-                  <button type="button" class="add-button"
-                    (click)="onClickAddButton(item); $event.stopPropagation(); $event.preventDefault();">+</button>
-                </div>
-              </mat-grid-tile>
-              <mat-grid-tile [colspan]="2" [rowspan]="2">
-                {{item.price}} ₴
-              </mat-grid-tile>
-            </mat-grid-list>
-          </mat-card>
-        </mat-grid-tile>
-      </mat-grid-list>
+<!-- <mat-grid-list
+  style="padding: 10px"
+  [cols]="colsVar"
+  rowHeight="2:1"
+  (window:resize)="onResize($event)"
+> -->
+<mat-card style="width: 96%; max-width: 360px; margin: 6px; padding: 2px;" *ngFor="let item of cart">
+  <mat-grid-list cols="12" rowHeight="32px">
+    <mat-grid-tile [colspan]="2" [rowspan]="2" class="item">
+      <img mat-card-avatar [src]="item.image">
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="colsVar" [rowspan]="50" class="form-tile">
-      <form *ngIf="form" [formGroup]="form" (ngSubmit)="submit()" style="width: 100%; height: 100%; padding-right: 1vh;">
-        <mat-grid-list [cols]="1" rowHeight="18px">
-          <mat-grid-tile [colspan]="1" [rowspan]="4" class="input">
-            <div style="margin-right: 10px; position: absolute; left: 10%">Им'я:</div>
-            <mat-form-field appearance="outline">
-              <input matInput formControlName="name">
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="1" [rowspan]="4">
-            <span style="margin-right: 10px; position: absolute; left: 10%">Телефон:</span>
-            <mat-form-field appearance="outline">
-              <input matInput formControlName="phone">
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="1" [rowspan]="4" class="input">
-            <span style="margin-right: 10px; position: absolute; left: 10%">Вулиця:</span>
-            <mat-form-field appearance="outline">
-              <input matInput formControlName="street">
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="1" [rowspan]="4">
-            <span style="margin-right: 10px; position: absolute; left: 10%">Будинок:</span>
-            <mat-form-field appearance="outline">
-              <input matInput formControlName="house">
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="1" [rowspan]="4" class="input">
-            <span style="margin-right: 10px; position: absolute; left: 10%">Квартира:</span>
-            <mat-form-field appearance="outline">
-              <input matInput formControlName="flat">
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="1" [rowspan]="5">
-            <span style="margin-right: 10px; position: absolute; left: 10%">Коментар:</span>
-            <mat-form-field appearance="outline">
-              <textarea matInput formControlName="comment"></textarea>
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="1" [rowspan]="4">
-            <button class="order-button" type="submit" mat-raised-button>Замовити</button>
-          </mat-grid-tile>
-        </mat-grid-list>
-      </form>
+    <mat-grid-tile [colspan]="4" [rowspan]="2" class="item">
+      {{item.name}}
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="4" [rowspan]="2">
+      <div class="cartOptions">
+        <button type="button" class="remove-button"
+          (click)="onClickRemoveButton(item); $event.stopPropagation(); $event.preventDefault();">-</button>
+        <div style="padding: 0 10px; color: black; font-size: 24px;">{{item.quantity}}</div>
+        <button type="button" class="add-button"
+          (click)="onClickAddButton(item); $event.stopPropagation(); $event.preventDefault();">+</button>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="2">
+      {{item.price}} ₴
     </mat-grid-tile>
   </mat-grid-list>
-</div>
+</mat-card>
+<mat-card style="width: 96%; max-width: 360px; margin: 0 auto; padding: 4px;">
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="submit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Input</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <p>
+      <mat-form-field appearance="outline" style=" width: 98%; height: 50px; border: 1px solid black">
+        <mat-label>Им'я</mat-label>
+        <input matInput type="text" style="height: 40px;">
+      </mat-form-field>
+    </p>
+    <!-- <div style="margin-right: 10px; position: absolute; left: 10%">Им'я:</div> -->
+    <mat-form-field>
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <!-- <span style="margin-right: 10px; position: absolute; left: 10%">Телефон:</span> -->
+    <mat-form-field>
+      <input matInput formControlName="phone">
+    </mat-form-field>
+    <!-- <span style="margin-right: 10px; position: absolute; left: 10%">Вулиця:</span> -->
+    <mat-form-field>
+      <input matInput formControlName="street">
+    </mat-form-field>
+    <!-- <span style="margin-right: 10px; position: absolute; left: 10%">Будинок:</span> -->
+    <mat-form-field>
+      <input matInput formControlName="house">
+    </mat-form-field>
+    <!-- <span style="margin-right: 10px; position: absolute; left: 10%">Квартира:</span> -->
+    <mat-form-field>
+      <input matInput formControlName="flat">
+    </mat-form-field>
+    <!-- <span style="margin-right: 10px; position: absolute; left: 10%">Коментар:</span> -->
+    <mat-form-field>
+      <textarea matInput formControlName="comment"></textarea>
+    </mat-form-field>
+    <button class="order-button" type="submit" mat-raised-button>Замовити</button>
+  </form>
+</mat-card>
+<!-- <mat-grid-tile [colspan]="colsVar" [rowspan]="50" class="form-tile">
+</mat-grid-tile> -->
+<!-- </mat-grid-list> -->
