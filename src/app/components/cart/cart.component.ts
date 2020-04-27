@@ -14,13 +14,12 @@ import { ShoppingcartService } from 'src/app/services/shopingcart/shopingcart.se
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
-  encapsulation: ViewEncapsulation.ShadowDom,
+  encapsulation: ViewEncapsulation.None,
 })
 export class CartComponent implements OnInit {
   public cart: any;
   public form: FormGroup;
   public colsVar: any;
-  public rowsVar: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,7 +30,6 @@ export class CartComponent implements OnInit {
   ) {
     this.form = null;
     this.colsVar = 1;
-    this.rowsVar = 11;
   }
 
   ngOnInit() {
@@ -47,7 +45,6 @@ export class CartComponent implements OnInit {
     this.shoppingcart.getData()
       .pipe(switchMap(data => {
         this.cart = [...data];
-        this.rowsVar = this.cart.length * 10;
         return this.scroller.getData()
       }))
       .subscribe(data => {

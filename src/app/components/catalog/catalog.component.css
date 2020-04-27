@@ -32,19 +32,11 @@ mat-list-item {
   float: right;
 }
 
-::ng-deep .mat-grid-tile {
-  height: 370px!important;
-}
-::ng-deep .mat-grid-tile .mat-figure {
-  height: 370px!important;
-}
-
 mat-card {
   margin: 1px;
   padding: 0!important;
   background: white!important;
   margin-right: 1vh;
-  height: 360px;
 }
 
 mat-card img {
@@ -79,9 +71,6 @@ a {
   text-decoration: none;
 }
 
-mat-tab-body-wrapper {
-  padding-top: 140px;
-}
 .cartOptions {
   display: flex;
 }
